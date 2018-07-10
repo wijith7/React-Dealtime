@@ -26,12 +26,19 @@ export default class ShowProduct extends React.Component {
     }
   }
 
-  pass_cart(){
-  var i = 9;
-      i=i-1;
-      console.log(i);
+  pass_cart(product){
+
+'use strict';
+const fs = require('fs');
+
+    let orderJSON = {"ID":product.ID,"name":product.name,"description":product.description,"price":product.price,"gender":product.gender};
 
 
+
+  let data=JSON.stringify(orderJSON);
+  fs.writeFileSync('order_data.json',data);
+
+    console.log(orderJSON);
 
 }
   componentDidMount() {
@@ -70,13 +77,13 @@ export default class ShowProduct extends React.Component {
                   <div className="product">
                     <p id="product-description1">{product.description}</p>
 
-                    <p id="product-description2">{product.stock} Items Remaining </p>
+                    <p id="product-description2">{product.stock}  Items Remaining </p>
 
                     <p id="product-price">${product.price}</p>
                     <div>
 
 
-                      <button onClick={this.pass_cart}>
+                      <button onClick={() => this.pass_cart(product)}>
                         <Icon medium="small" id="cart"><p id= "product-description" >Add To Cart</p>add_shopping_cart</Icon>
 
                       </button>

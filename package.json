@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "amazon-product-api": "^0.4.4",
+    "jsonfile": "^4.0.0",
     "lodash": "^4.17.4",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
@@ -18,5 +19,18 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wijith7/React-Dealtime.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wijith7/React-Dealtime/issues"
+  },
+  "homepage": "https://github.com/wijith7/React-Dealtime#readme",
+  "description": ""
 }

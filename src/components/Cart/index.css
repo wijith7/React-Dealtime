@@ -104,7 +104,7 @@ i:hover {
   align-items: center;
   height: 40em;
   font-family: 'Quicksand', sans-serif;
-  
+
 }
 
 .item-wrapper-form {
@@ -156,7 +156,15 @@ i:hover {
 }
 
 
-#product-description {
+#product-description1 {
+  font-size: 1em;
+  font-family: 'Lato', sans-serif;
+  color: grey;
+  font-weight: lighter;
+  margin: 0;
+}
+
+#product-description2 {
   font-size: 1em;
   font-family: 'Lato', sans-serif;
   color: grey;

@@ -25,6 +25,7 @@ ReactDOM.render(
       <Route path="/show_products_B/:ID" component={show_products_B} />
       <Route path="/login" component={Login}  />
       <Route exact path="/show_products/:ID" component={ShowProduct} />
+      <Route path="/cart" component={Cart} />
 
 </Switch>
     </BaseLayout>

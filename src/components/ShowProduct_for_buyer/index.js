@@ -26,11 +26,12 @@ export default class ShowProduct extends React.Component {
     }
   }
 
-  submit(){
+  pass_cart(){
+  var i = 9;
+      i=i-1;
+      console.log(i);
 
-      console.log('rrrr');
 
-      return false;
 
 }
   componentDidMount() {
@@ -66,24 +67,28 @@ export default class ShowProduct extends React.Component {
                   <div className="product-info">
                     <h3 id="product-name">{product.name}</h3>
                   </div>
-                  <div className="product-bio">
-                    <p id="product-description">{product.description}</p>
+                  <div className="product">
+                    <p id="product-description1">{product.description}</p>
+
+                    <p id="product-description2">{product.stock} Items Remaining </p>
+
                     <p id="product-price">${product.price}</p>
-                    <Icon small="small" id="add-icon">add_shopping_cart</Icon>
+                    <div>
+
+
+                      <button onClick={this.pass_cart}>
+                        <Icon medium="small" id="cart"><p id= "product-description" >Add To Cart</p>add_shopping_cart</Icon>
+
+                      </button>
+
+                    </div>
+
                   </div>
                   <div className="product-review"></div>
                 </div>
               </div>
 
-              <div className="item-form">
-                <form onSubmit={this.handleSubmit}>
-                  <label>
-                    Numbers of items:
-                    <input type="Number"ref={node =>(this.inputNode = node)} />
-                  </label>
-                  <input type="submit" className="button success"  onClick={this.submit}/>
-                </form>
-              </div>
+
 
             </div>)
 

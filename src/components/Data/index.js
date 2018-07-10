@@ -18,7 +18,7 @@ export function getProducts()  {
   };
 
 
-  return axios.get("https://localhost:8243/itemapi/1.0.0/order/1", axiosConfig) //FRONTEND_URL
+  return axios.get("https://localhost:8243/itemapi/1.0.0/order/all", axiosConfig) //FRONTEND_URL
   .then(function(res){
     console.log("RESPONSE RECEIVED: ", res);
     console.log("RESPONSE data: ", res.data);

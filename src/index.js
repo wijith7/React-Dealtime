@@ -14,6 +14,7 @@ import Login from './components/Login';
 // import Clothes from './components/Clothes';
 // import Accessories from './components/Accessories';
  import ShowProduct from './components/ShowProduct';
+ import show_products_B from './components/ShowProduct_for_buyer';
  import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
@@ -21,7 +22,7 @@ ReactDOM.render(
     <BaseLayout>
 <Switch>
       <Route path="/products" component={Products} />
-      <Route path="/cart" component={Cart} />
+      <Route path="/show_products_B/:ID" component={show_products_B} />
       <Route path="/login" component={Login}  />
       <Route exact path="/show_products/:ID" component={ShowProduct} />
 

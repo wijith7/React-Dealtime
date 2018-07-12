@@ -13,7 +13,7 @@ export function getProducts()  {
 
         "Access-Control-Allow-Origin": "*",
         "Accept": "*/*",
-        "Authorization": "Bearer 75003b7a-bbbe-3097-ad03-de4aa6ded3d6"
+        "Authorization": "Bearer 0b3c389a-3389-380d-9f6a-9efbd09321d4"
   }
   };
 

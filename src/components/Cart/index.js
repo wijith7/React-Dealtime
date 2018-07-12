@@ -1,3 +1,21 @@
+/*
+* Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+*
+* WSO2 Inc. licenses this file to you under the Apache License,
+* Version 2.0 (the "License"); you may not use this file except
+* in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing,
+* software distributed under the License is distributed on an
+* "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+* KIND, either express or implied.  See the License for the
+* specific language governing permissions and limitations
+* under the License.
+*/
+
 //Dependencies
 import React, {Component} from 'react';
 //import React from 'react';
@@ -11,6 +29,8 @@ import './index.css';
 
 export default class ShowProduct extends React.Component {
 
+
+
   handleSubmit = event => {
     event.preventDefault()
     // console.log({target: event.target})
@@ -23,14 +43,16 @@ export default class ShowProduct extends React.Component {
     this.state = {
       products: [],
       loading: false
+
+
     }
   }
 
-  pass_cart(stock){
+  submit(){
 
-      console.log(stock);
+      console.log('rrrr');
 
-
+      return false;
 
 }
   componentDidMount() {
@@ -43,6 +65,10 @@ export default class ShowProduct extends React.Component {
 
   render() {
 
+    var re = JSON.parse(window.localStorage.getItem('pro'));
+      console.log("rrrrrr");
+      console.log(re);
+
     //get ID from the url
     const ID_Number = (parseInt(this.props.match.params.ID));
     if (this.state.loading) {
@@ -52,36 +78,25 @@ export default class ShowProduct extends React.Component {
     }
 
     return (<div>{
-        this.state.products.map((product) => {
 
-          if (product.ID == ID_Number) {
-            return (<div className="show-product">
+            (<div className="show-product">
+            <div className="title">
+                <h4>My Cart</h4>
+            </div>
               <div className="item-wrapper">
 
                 <div className="item-image">
 
-                  <img className="product-image" src={product.img} alt="product"/>
+                  <img className="product-image" src={re.img} alt="product"/>
                 </div>
                 <div className="item-name">
                   <div className="product-info">
-                    <h3 id="product-name">{product.name}</h3>
+                    <h3 id="product-name">{re.name}</h3>
                   </div>
-                  <div className="product">
-                    <p id="product-description1">{product.description}</p>
-
-                    <p id="product-description2">{product.stock}  Items Remaining </p>
-
-                    <p id="product-price">${product.price}</p>
-                    <div>
-
-
-                      <button onClick={this.pass_cart(product.stock)}>
-                        <Icon medium="small" id="cart"><p id= "product-description" >Add To Cart</p>add_shopping_cart</Icon>
-
-                      </button>
-
-                    </div>
-
+                  <div className="product-bio">
+                    <p id="product-description">{re.description}</p>
+                    <p id="product-price">${re.price}</p>
+                    <Icon small="small" id="add-icon">add_shopping_cart</Icon>
                   </div>
                   <div className="product-review"></div>
                 </div>
@@ -91,8 +106,8 @@ export default class ShowProduct extends React.Component {
 
             </div>)
 
-          }
-        })
+
+
       }
     </div>);
 

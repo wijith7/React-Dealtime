@@ -29,33 +29,16 @@ import './index.css';
 
 export default class ShowProduct extends React.Component {
 
-
-
-  handleSubmit = event => {
-    event.preventDefault()
-    // console.log({target: event.target})
-    // console.log(event.target[0].value)
-    console.log(this.inputNode.value)
-  }
-
   constructor() {
     super();
     this.state = {
       products: [],
       loading: false
-
-
     }
   }
 
-  submit(){
-
-      console.log('rrrr');
-
-      return false;
-
-}
   componentDidMount() {
+//debugger;
     //setState loading
     this.setState({loading: true});
     getProducts().then((res = []) => {
@@ -65,12 +48,21 @@ export default class ShowProduct extends React.Component {
 
   render() {
 
-    var re = JSON.parse(window.localStorage.getItem('pro'));
-      console.log("rrrrrr");
-      console.log(re);
+
+   var re = JSON.parse(localStorage.getItem('item'));
+
+   for(var i=0; i<re.length; i++){
+
+        re=re[i];
+        
+      }
+          //  console.log(typeof(re));
+
+//console.log(re);
+
 
     //get ID from the url
-    const ID_Number = (parseInt(this.props.match.params.ID));
+
     if (this.state.loading) {
 
       return (<div>Loading ...</div>);
@@ -78,38 +70,46 @@ export default class ShowProduct extends React.Component {
     }
 
     return (<div>{
+        this.state.re.map((product) => {
 
-            (<div className="show-product">
-            <div className="title">
-                <h4>My Cart</h4>
-            </div>
+
+            return (<div className="show-product">
               <div className="item-wrapper">
 
                 <div className="item-image">
 
-                  <img className="product-image" src={re.img} alt="product"/>
+                  <img className="product-image" src={product.img} alt="product"/>
                 </div>
                 <div className="item-name">
                   <div className="product-info">
-                    <h3 id="product-name">{re.name}</h3>
+                    <h3 id="product-name">{product.name}</h3>
                   </div>
                   <div className="product-bio">
-                    <p id="product-description">{re.description}</p>
-                    <p id="product-price">${re.price}</p>
+                    <p id="product-description">{product.description}</p>
+                    <p id="product-price">${product.price}</p>
                     <Icon small="small" id="add-icon">add_shopping_cart</Icon>
                   </div>
                   <div className="product-review"></div>
                 </div>
               </div>
 
-
+              <div className="item-form">
+                <form onSubmit={this.handleSubmit}>
+                  <label>
+                    Numbers of items:
+                    <input type="Number"ref={node =>(this.inputNode = node)} />
+                  </label>
+                  <input type="submit" className="button success"  onClick={this.submit}/>
+                </form>
+              </div>
 
             </div>)
 
 
-
+        })
       }
     </div>);
 
-  }
+
+}
 }

@@ -25,6 +25,7 @@ import {Icon} from 'react-materialize';
 import {getProducts} from '../Data';
 //import PRODUCTS from '../Data';
 import './index.css';
+import axios from 'axios';
 
 
 export default class ShowProduct extends React.Component {
@@ -34,6 +35,8 @@ export default class ShowProduct extends React.Component {
     // console.log({target: event.target})
     // console.log(event.target[0].value)
     console.log(this.inputNode.value)
+    var inputval = this.inputNode.value;
+
   }
 
   constructor() {
@@ -44,11 +47,46 @@ export default class ShowProduct extends React.Component {
     }
   }
 
-  submit(){
+  submit(ID,stock){
+//console.log(val);
+var access_token = localStorage.getItem('access_token');
 
-      console.log('rrrr');
 
-      return false;
+
+  let axiosConfig = {
+    headers: {
+
+        "Access-Control-Allow-Origin": "*",
+        "Accept": "*/*",
+        //"Authorization": "Bearer " + access_token
+        "Authorization": "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
+
+        //I Have to add credential convertion to BEARER
+
+
+        //91c3130c-2f4a-3a17-b4db-eaa9673c706c
+  }
+  };
+
+
+
+  return axios.put("https://localhost:8243/itemapi/1.0.0/order/"+ID,{"stock": eval(this.inputNode.value) + eval(stock)} ,axiosConfig) //FRONTEND_URL
+  .then(function(res){
+    console.log("RESPONSE RECEIVED: ", res);
+    console.log("RESPONSE data: ", res.data);
+    let products = res.data;
+    return(products);
+  }).catch((err) => {
+    console.log("AXIOS ERROR: ", err);
+
+  });
+
+
+
+
+
+
+
 
 }
   componentDidMount() {
@@ -86,6 +124,7 @@ export default class ShowProduct extends React.Component {
                   </div>
                   <div className="product-bio">
                     <p id="product-description">{product.description}</p>
+                    <p id="product-description">Items in the stock :{product.stock}</p>
                     <p id="product-price">${product.price}</p>
                     <Icon small="small" id="add-icon">add_shopping_cart</Icon>
                   </div>
@@ -99,7 +138,22 @@ export default class ShowProduct extends React.Component {
                     Numbers of items:
                     <input type="Number"ref={node =>(this.inputNode = node)} />
                   </label>
-                  <input type="submit" className="button success"  onClick={this.submit}/>
+
+                  <div>
+
+
+
+
+                      <input type="submit" className="button success"  onClick={() => this.submit(product.ID,product.stock)}/>
+
+
+                  </div>
+
+
+
+
+
+
                 </form>
               </div>
 

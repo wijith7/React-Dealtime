@@ -32,6 +32,9 @@ import Login from './components/Login';
 // import Clothes from './components/Clothes';
 // import Accessories from './components/Accessories';
  import ShowProduct from './components/ShowProduct';
+ import Inventory from './components/Inventory';
+ import Inventory_Items from './components/Inventory_Items';
+ import Add_Inventory_Items from './components/Add_Inventory_Items';
  import show_products_B from './components/ShowProduct_for_buyer';
  import registerServiceWorker from './registerServiceWorker';
 
@@ -40,10 +43,14 @@ ReactDOM.render(
     <BaseLayout>
 <Switch>
       <Route path="/products" component={Products} />
+
       <Route path="/show_products_B/:ID" component={show_products_B} />
       <Route path="/login" component={Login}  />
       <Route exact path="/show_products/:ID" component={ShowProduct} />
       <Route path="/cart" component={Cart} />
+      <Route path="/inventory" component={Inventory} />
+      <Route path="/inventory_items" component={Inventory_Items} />
+      <Route path="/add_inventory_items" component={Add_Inventory_Items} />
 
 </Switch>
     </BaseLayout>

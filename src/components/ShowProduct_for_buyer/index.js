@@ -47,73 +47,25 @@ export default class ShowProduct extends React.Component {
 
   pass_cart(product){
 
-//     var orderJSON = {"ID":product.ID,"name":product.name,"price":product.price};
-//
-//     var obj = JSON.stringify(orderJSON);
-//     var ob = new Array(obj);
-//
-//     var a = [];
-//
-// //localStorage.removeItem("pro");
-//
-// a.push(JSON.parse(localStorage.getItem('session')));
-// localStorage.setItem('session', JSON.stringify(a));
-// //localStorage.setItem("pro", obj);
-//
-// a = JSON.parse(localStorage.getItem('session'));
-// a.push(data);
-// localStorage.setItem('session', JSON.stringify(a));
-//
-//
-// var re = JSON.parse(localStorage.getItem('pro'));
-//    console.log(re);
-   //
-   //  var pro='';
-   //  var pro_list =[];
-   //
-   //  pro_list.push(orderJSON);
-   //
-   //  localStorage.setItem("pro", obj);
-   //
-   //   var re = JSON.parse(localStorage.getItem("pro"));
-   //
-   //
-   // console.log(re);
+ var orderJSON = {"ID":product.ID,"name":product.name,"price":product.price};
 
+//localStorage.removeItem("item");
 
-    // if(pro != null){
-    //
-    //   pro.push(obj);
-    //
-    // }
+ var cart = localStorage.getItem('item');
+ var cartObj = [];
 
-    // var prodObj = {"ID":product.ID,"name":product.name,"price":product.price};
-    //
-    // var cart = window.localStorage.getItem('cart');
-    //
-    // if(cart == null){
-    //
-    //   cart = {"items" : [prodObj]}
-    //
-    // }
-    //
-    // else{
-    //
-    //   cart = cart["items"].push(prodObj);
-    // }
-    //
-    // window.localStorage.setItem('pro', prodObj);
+ if (cart == null){
+   cartObj.push(orderJSON);
 
+ }else {
 
+   cartObj = JSON.parse(cart);
+   cartObj.push(orderJSON);
 
-// for(var i=0; i<pro.length; i++){
-//    var re = JSON.parse(localStorage.getItem[i]);
-//
-//       console.log(re);
-// }
-  //  return orderJSON;
-
-
+ }
+ localStorage.setItem("item",JSON.stringify(cartObj));
+ var re = JSON.parse(localStorage.getItem('item'));
+ //console.log(re);
 
 }
   componentDidMount() {

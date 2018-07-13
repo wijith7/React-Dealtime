@@ -1,3 +1,25 @@
+/*
+* Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+*
+* WSO2 Inc. licenses this file to you under the Apache License,
+* Version 2.0 (the "License"); you may not use this file except
+* in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing,
+* software distributed under the License is distributed on an
+* "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+* KIND, either express or implied.  See the License for the
+* specific language governing permissions and limitations
+* under the License.
+*/
+
+
+
+
+// This is the js that we call data from the backend
 
 import React from 'react';
 import { Icon } from 'react-materialize';
@@ -5,15 +27,27 @@ import { Link } from 'react-router-dom';
 //Internals
 //import PRODUCTS from '../../Data';
 import axios from 'axios';
+import cookie from 'react-cookie';
 
 export function getProducts()  {
+//var x = document.cookie;
+//var x= document.cookie(access_token);
+//console.log(x);
+var access_token = localStorage.getItem('access_token');
+
 
   let axiosConfig = {
     headers: {
 
         "Access-Control-Allow-Origin": "*",
         "Accept": "*/*",
-        "Authorization": "Bearer 0b3c389a-3389-380d-9f6a-9efbd09321d4"
+        //"Authorization": "Bearer " + access_token
+        "Authorization": "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
+
+        //I Have to add credential convertion to BEARER
+
+
+        //91c3130c-2f4a-3a17-b4db-eaa9673c706c
   }
   };
 

@@ -30,14 +30,14 @@ import axios from 'axios';
 
 export default class ShowProduct extends React.Component {
 
-  handleSubmit = event => {
-    event.preventDefault()
-    // console.log({target: event.target})
-    // console.log(event.target[0].value)
-    console.log(this.inputNode.value)
-    var inputval = this.inputNode.value;
-
-  }
+  // handleSubmit = event => {
+  //   event.preventDefault()
+  //   // console.log({target: event.target})
+  //   // console.log(event.target[0].value)
+  //   console.log(this.inputNode.value)
+  //   var inputval = this.inputNode.value;
+  //
+  // }
 
   constructor() {
     super();
@@ -70,7 +70,7 @@ var access_token = localStorage.getItem('access_token');
 
 
 
-  return axios.put("https://localhost:8243/itemapi/1.0.0/order/"+ID,{"stock": eval(this.inputNode.value) + eval(stock)} ,axiosConfig) //FRONTEND_URL
+  return axios.put("https://localhost:8243/inventoryapi/1.0.0/order/"+ID,{"stock": eval(this.inputNode.value) + eval(stock)} ,axiosConfig) //FRONTEND_URL
   .then(function(res){
     console.log("RESPONSE RECEIVED: ", res);
     console.log("RESPONSE data: ", res.data);

@@ -25,7 +25,7 @@ import './index.css';
 const MensProducts = () => (
   <div className="products-lot">
     <div className="products-title">
-      <h4>products</h4>
+      <h4>Inventory Items</h4>
     </div>
     <MenItems />
   </div>

@@ -66,8 +66,7 @@ export default class ProItems extends React.Component {
           <div className="product-details">
           <h1 id="product-name">{product.name}</h1>
           <h4 id="product-description">{product.description}</h4>
-          <h4 id="product-description">Product ID :{product.ID}</h4>
-          <h4 id="product-description">Items in stock :{product.stock}</h4>
+        
           </div>
           </Link>
           <div className="price-add">

@@ -59,14 +59,14 @@ export default class ProItems extends React.Component {
         return(
           <div className="items">
 
-        
+
           <div className="product-img">
           <img alt={product.name} src={product.img} />
           </div>
           <div className="product-details">
+          <h4 id="product-description">Product ID : {product.ID}</h4>
           <h1 id="product-name">{product.name}</h1>
           <h4 id="product-description">{product.description}</h4>
-          <h4 id="product-description">{product.ID}</h4>
           <h4 id="product-description">Items in stock :{product.stock}</h4>
           </div>
 

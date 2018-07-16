@@ -17,99 +17,43 @@
 */
 
 //Dependencies
-import React, {Component} from 'react';
-//import React from 'react';
-import find from 'lodash/find';
-import {Link} from 'react-router-dom';
-import {Icon} from 'react-materialize';
-import {getProducts} from '../Data';
-//import PRODUCTS from '../Data';
+import React from 'react';
+import { Icon } from 'react-materialize';
+import { Link } from 'react-router-dom';
+//Internals
+import { getProducts } from '../DataInventory';
+import { NavLink } from 'react-router-dom';
 import './index.css';
 
+export default class ProItems extends React.Component {
 
-export default class ShowProduct extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
-      products: [],
-      loading: false
-    }
+
+  render(){
+
+
+    var re = JSON.parse(localStorage.getItem('item'));
+
+
+
+    return(
+      <div>{re.map((product)=>{
+        return(
+          <div className="product-items">
+
+          <div className="product-details">
+          <h1 id="product-name">{product.name}</h1>
+          <h4 id="product-description">Product ID :{product.ID}</h4>
+          <h5 id="product-description">Items remaining :{product.stock}</h5>
+          <h5 id="product-price">${product.price}</h5>
+          <button>Checkout</button>
+          </div>
+
+
+          </div>
+        )
+      })}
+      </div>
+    );
   }
-
-  componentDidMount() {
-//debugger;
-    //setState loading
-    this.setState({loading: true});
-    getProducts().then((res = []) => {
-    this.setState({products: res, loading: false})
-    });
-  }
-
-  render() {
-
-
-   var re = JSON.parse(localStorage.getItem('item'));
-
-   for(var i=0; i<re.length; i++){
-
-        re=re[i];
-        
-      }
-          //  console.log(typeof(re));
-
-//console.log(re);
-
-
-    //get ID from the url
-
-    if (this.state.loading) {
-
-      return (<div>Loading ...</div>);
-
-    }
-
-    return (<div>{
-        this.state.re.map((product) => {
-
-
-            return (<div className="show-product">
-              <div className="item-wrapper">
-
-                <div className="item-image">
-
-                  <img className="product-image" src={product.img} alt="product"/>
-                </div>
-                <div className="item-name">
-                  <div className="product-info">
-                    <h3 id="product-name">{product.name}</h3>
-                  </div>
-                  <div className="product-bio">
-                    <p id="product-description">{product.description}</p>
-                    <p id="product-price">${product.price}</p>
-                    <Icon small="small" id="add-icon">add_shopping_cart</Icon>
-                  </div>
-                  <div className="product-review"></div>
-                </div>
-              </div>
-
-              <div className="item-form">
-                <form onSubmit={this.handleSubmit}>
-                  <label>
-                    Numbers of items:
-                    <input type="Number"ref={node =>(this.inputNode = node)} />
-                  </label>
-                  <input type="submit" className="button success"  onClick={this.submit}/>
-                </form>
-              </div>
-
-            </div>)
-
-
-        })
-      }
-    </div>);
-
-
-}
 }

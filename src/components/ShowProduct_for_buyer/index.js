@@ -47,14 +47,33 @@ export default class ShowProduct extends React.Component {
 
   pass_cart(product){
 
- var orderJSON = {"ID":product.ID,"name":product.name,"price":product.price};
-
+ var orderJSON = {"ID":product.ID,"name":product.name,"price":product.price,"stock":product.stock};
+//console.log("wwww",orderJSON);
 //localStorage.removeItem("item");
 
  var cart = localStorage.getItem('item');
+
+ var array_value = JSON.parse(localStorage.getItem('item'));
+
+if(cart != null){
+
+for(var i=0; i<array_value.length; i++){
+
+ if(orderJSON.ID == array_value[i].ID ){
+
+    alert("Item is allready in the Cart");
+      return;
+ }
+
+}
+
+}
+
+
  var cartObj = [];
 
  if (cart == null){
+
    cartObj.push(orderJSON);
 
  }else {
@@ -64,10 +83,18 @@ export default class ShowProduct extends React.Component {
 
  }
  localStorage.setItem("item",JSON.stringify(cartObj));
- var re = JSON.parse(localStorage.getItem('item'));
+
+ //var re = JSON.parse(localStorage.getItem('item'));
  //console.log(re);
 
+ alert("Item is add to the cart successfully");
+
+
+
 }
+
+
+
   componentDidMount() {
     //setState loading
     this.setState({loading: true});
@@ -113,9 +140,9 @@ export default class ShowProduct extends React.Component {
 
                     <p id="product-description1">{product.description}</p>
 
-                    <p id="product-description2">{product.stock}  Items Remaining </p>
-
                     <p id="product-price">${product.price}</p>
+
+
 
                         <div>
 

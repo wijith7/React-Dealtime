@@ -15,13 +15,13 @@
   transition: transform 300ms bounce;
 }
 
-.items {
-  display: inline-block;
+.product-items {
+  display: inline;
   flex-wrap: wrap;
   justify-content:center;
   align-items: center;
   width: auto;
-  padding-left:85px;
+  padding-left:200px;
   padding-top:22px;
 }
 
@@ -44,6 +44,14 @@ img {
 }
 
 #product-name {
+  border-top: 1px solid lightgrey;
+  padding: 1em 0 0;
+  font-size: 1.5em;
+  font-family: 'Lato', sans-serif;
+  margin: .5em 0;
+}
+
+#product-stock {
   border-top: 1px solid lightgrey;
   padding: 1em 0 0;
   font-size: 1.5em;

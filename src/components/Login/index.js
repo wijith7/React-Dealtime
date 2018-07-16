@@ -59,7 +59,7 @@ login(){
 
 
 
-      document.cookie=data.access_token;  //store access_token in cookie
+    //  document.cookie=data.access_token;  //store access_token in cookie
 
     //  var at=data.access_token;
     //  console.log(access_token);

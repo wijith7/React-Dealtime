@@ -18,26 +18,19 @@
 
 //Dependencies
 import React, {Component} from 'react';
-//import React from 'react';
-import find from 'lodash/find';
-import {Link} from 'react-router-dom';
 import {Icon} from 'react-materialize';
 import {getProducts} from '../Data';
-//import PRODUCTS from '../Data';
 import './index.css';
 import axios from 'axios';
 
 
 export default class ShowProduct extends React.Component {
 
-  // handleSubmit = event => {
-  //   event.preventDefault()
-  //   // console.log({target: event.target})
-  //   // console.log(event.target[0].value)
-  //   console.log(this.inputNode.value)
-  //   var inputval = this.inputNode.value;
-  //
-  // }
+  handleSubmit = event => {
+    event.preventDefault()
+    console.log(this.inputNode.value)
+    var inputval = this.inputNode.value;
+  }
 
   constructor() {
     super();
@@ -48,27 +41,26 @@ export default class ShowProduct extends React.Component {
   }
 
   submit(ID,stock){
-//console.log(val);
+
+    // Get access_token from localstorage
 var access_token = localStorage.getItem('access_token');
 
-
+    //console.log(this.inputNode.value);
 
   let axiosConfig = {
     headers: {
 
         "Access-Control-Allow-Origin": "*",
         "Accept": "*/*",
+
         //"Authorization": "Bearer " + access_token
+
         "Authorization": "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
-
-        //I Have to add credential convertion to BEARER
-
-
-        //91c3130c-2f4a-3a17-b4db-eaa9673c706c
+   
   }
   };
 
-
+  // by this we send put request through the inventory_API for add Items for the store 
 
   return axios.put("https://localhost:8243/inventoryapi/1.0.0/order/"+ID,{"stock": eval(this.inputNode.value) + eval(stock)} ,axiosConfig) //FRONTEND_URL
   .then(function(res){
@@ -81,13 +73,6 @@ var access_token = localStorage.getItem('access_token');
 
   });
 
-
-
-
-
-
-
-
 }
   componentDidMount() {
     //setState loading
@@ -99,8 +84,9 @@ var access_token = localStorage.getItem('access_token');
 
   render() {
 
-    //get ID from the url
+    //get ID from the url add show the pertiquler product
     const ID_Number = (parseInt(this.props.match.params.ID));
+
     if (this.state.loading) {
 
       return (<div>Loading ...</div>);
@@ -111,29 +97,37 @@ var access_token = localStorage.getItem('access_token');
         this.state.products.map((product) => {
 
           if (product.ID == ID_Number) {
-            return (<div className="show-product">
+            return (
+            <div className="show-product">
               <div className="item-wrapper">
-
                 <div className="item-image">
 
                   <img className="product-image" src={product.img} alt="product"/>
+
                 </div>
+
                 <div className="item-name">
                   <div className="product-info">
+
                     <h3 id="product-name">{product.name}</h3>
+
                   </div>
+
                   <div className="product-bio">
                     <p id="product-description">{product.description}</p>
                     <p id="product-description">Items in the stock :{product.stock}</p>
                     <p id="product-price">${product.price}</p>
                     <Icon small="small" id="add-icon">add_shopping_cart</Icon>
                   </div>
-                  <div className="product-review"></div>
-                </div>
+
+                  </div>
+
               </div>
 
               <div className="item-form">
+
                 <form onSubmit={this.handleSubmit}>
+
                   <label>
                     Numbers of items:
                     <input type="Number"ref={node =>(this.inputNode = node)} />
@@ -141,17 +135,10 @@ var access_token = localStorage.getItem('access_token');
 
                   <div>
 
-
-
-
                       <input type="submit" className="button success"  onClick={() => this.submit(product.ID,product.stock)}/>
 
 
                   </div>
-
-
-
-
 
 
                 </form>

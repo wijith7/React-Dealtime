@@ -18,18 +18,16 @@
 
 //Dependencies
 import React from 'react';
-//Internals
-import MenItems from './ProItems';
 import './index.css';
 
-const MensProducts = () => (
+const Inventory_Items = () => (
   <div className="products-lot">
     <div className="products-title">
-      <h4>Add Inventory Items</h4>
+      <h4>Inventory Items</h4>
     </div>
-    <MenItems />
+  
   </div>
 );
 
 
-export default MensProducts;
+export default Inventory_Items;

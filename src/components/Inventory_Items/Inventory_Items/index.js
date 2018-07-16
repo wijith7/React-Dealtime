@@ -17,12 +17,12 @@
 */
 
 //Dependencies
+
 import React from 'react';
 import { Icon } from 'react-materialize';
 import { Link } from 'react-router-dom';
-//Internals
 import { getProducts } from '../../DataInventory';
-import { NavLink } from 'react-router-dom';
+
 
 export default class ProItems extends React.Component {
 
@@ -33,6 +33,9 @@ export default class ProItems extends React.Component {
       loading: false,
     }
   }
+    //This can be reuse
+
+    //we write this code bcz initialy we have to lode the items from the backend
 
    componentDidMount(){
     //setState loading
@@ -49,20 +52,23 @@ export default class ProItems extends React.Component {
   }
 
   render(){
+
     if ( this.state.loading) {
       return (
         <div>Loading ...</div>
       );
     }
+
     return(
+
       <div>{this.state.products.map((product)=>{
         return(
+
           <div className="items">
-
-
           <div className="product-img">
           <img alt={product.name} src={product.img} />
           </div>
+
           <div className="product-details">
           <h4 id="product-description">Product ID :{product.ID}</h4>
           <h1 id="product-name">{product.name}</h1>
@@ -72,9 +78,11 @@ export default class ProItems extends React.Component {
 
           <div className="price-add">
           <h5 id="product-price">${product.price}</h5>
+
             <Link to={`/show_products/${product.ID}`}>
           <Icon small>add_circle</Icon>
-              </Link>
+            </Link>
+            
         </div>
           </div>
         )

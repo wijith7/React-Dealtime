@@ -3,8 +3,8 @@
 }
 
 .item {
-  height: 20em;
-  width: 10em;
+  height: 30em;
+  width: 20em;
   font-family: 'Quicksand', sans-serif;
   overflow: hidden;
   display: flex;

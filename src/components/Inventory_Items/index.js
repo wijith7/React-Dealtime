@@ -18,8 +18,7 @@
 
 //Dependencies
 import React from 'react';
-//Internals
-import MenItems from './ProItems';
+import MenItems from './Inventory_Items';
 import './index.css';
 
 const MensProducts = () => (

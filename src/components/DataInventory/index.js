@@ -19,22 +19,16 @@
 
 
 
-// This is the js that we call data from the backend
+// This is the js that we call data from InventoryAPI
 
-import React from 'react';
-import { Icon } from 'react-materialize';
-import { Link } from 'react-router-dom';
-//Internals
-//import PRODUCTS from '../../Data';
 import axios from 'axios';
-import cookie from 'react-cookie';
-
 export function getProducts()  {
-//var x = document.cookie;
-//var x= document.cookie(access_token);
-//console.log(x);
+
+  //By this we retrive access token from the local storage
 var access_token = localStorage.getItem('access_token');
 
+
+//this part can be reuse
 
   let axiosConfig = {
     headers: {
@@ -51,6 +45,9 @@ var access_token = localStorage.getItem('access_token');
   }
   };
 
+//.......................
+
+// this Request data for the InventoryAPI
 
   return axios.get("https://localhost:8243/inventoryapi/1.0.0/order/all", axiosConfig) //FRONTEND_URL
   .then(function(res){

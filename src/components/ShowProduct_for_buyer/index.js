@@ -18,12 +18,8 @@
 
 //Dependencies
 import React, {Component} from 'react';
-//import React from 'react';
-import find from 'lodash/find';
-import {Link} from 'react-router-dom';
 import {Icon} from 'react-materialize';
 import {getProducts} from '../Data';
-//import PRODUCTS from '../Data';
 import './index.css';
 
 
@@ -32,8 +28,6 @@ export default class ShowProduct extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    // console.log({target: event.target})
-    // console.log(event.target[0].value)
     console.log(this.inputNode.value)
   }
 
@@ -45,11 +39,10 @@ export default class ShowProduct extends React.Component {
     }
   }
 
-  pass_cart(product){
+  //this is use for pass product details to cart
+pass_cart(product){
 
  var orderJSON = {"ID":product.ID,"name":product.name,"price":product.price,"stock":product.stock};
-//console.log("wwww",orderJSON);
-//localStorage.removeItem("item");
 
  var cart = localStorage.getItem('item');
 
@@ -62,13 +55,13 @@ for(var i=0; i<array_value.length; i++){
  if(orderJSON.ID == array_value[i].ID ){
 
     alert("Item is allready in the Cart");
+
       return;
  }
 
 }
 
 }
-
 
  var cartObj = [];
 
@@ -84,8 +77,7 @@ for(var i=0; i<array_value.length; i++){
  }
  localStorage.setItem("item",JSON.stringify(cartObj));
 
- //var re = JSON.parse(localStorage.getItem('item'));
- //console.log(re);
+
 
  alert("Item is add to the cart successfully");
 
@@ -120,6 +112,7 @@ for(var i=0; i<array_value.length; i++){
         if (product.ID == ID_Number)
         {
           return (
+
             <div className="show-product">
 
               <div className="item-wrapper">
@@ -129,22 +122,19 @@ for(var i=0; i<array_value.length; i++){
                 </div>
 
                     <div className="item-name">
-
-                       <div className="product-info">
+                        <div className="product-info">
 
                     <h3 id="product-name">{product.name}</h3>
 
-                       </div>
+                        </div>
 
-                           <div className="product">
+                     <div className="product">
 
                     <p id="product-description1">{product.description}</p>
 
                     <p id="product-price">${product.price}</p>
 
-
-
-                        <div>
+                     <div>
 
                         <button onClick={() => this.pass_cart(product)}>
 
@@ -155,7 +145,8 @@ for(var i=0; i<array_value.length; i++){
                         </div>
 
                            </div>
-                  <div className="product-review"></div>
+
+                 
                     </div>
               </div>
 

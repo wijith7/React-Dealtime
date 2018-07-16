@@ -18,13 +18,7 @@
 
 //Dependencies
 import React, {Component} from 'react';
-//import React from 'react';
-import find from 'lodash/find';
-import {Link} from 'react-router-dom';
-import {Icon} from 'react-materialize';
-import {getProducts} from '../Data';
 import {NavLink} from 'react-router-dom';
-//import PRODUCTS from '../Data';
 import './index.css';
 
 

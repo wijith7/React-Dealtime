@@ -18,7 +18,6 @@
 
 // Dependencies
 import React, { Component } from 'react';
-// Externals
 import Navbar from './components/NavBar';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -36,6 +35,7 @@ export default class BaseLayout extends Component {
     super(props);
     this.state = {
       index: 0,
+      logged: false,
     };
   }
 
@@ -44,17 +44,13 @@ export default class BaseLayout extends Component {
     this.setState({ index: newIndex })
   }
 
-  componentDidMount = () => {
-    setInterval(this.incrementIndex, 3000);
-  }
-
   render() {
     const index = this.state.index % classNames.length;
     const className = classNames[index];
     return(
       <div>
         <div className={className}>
-          <Navbar />
+          <Navbar logged={this.state.logged} />
           <Header />
         </div>
         <div className="content">

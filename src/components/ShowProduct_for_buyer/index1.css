@@ -183,6 +183,7 @@ i:hover {
 .item-name #product-name {
   font-size: 40px;
   border: none;
+  padding-left: 124px;
 }
 
 .item-name #product-description {
@@ -196,4 +197,13 @@ i:hover {
 
 .stars {
   display: flex;
+}
+
+.product{
+
+  padding-left:10em;
+  width: 800px;
+  padding-bottom: 10px;
+  border: 5px ;
+
 }

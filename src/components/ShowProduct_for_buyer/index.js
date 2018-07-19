@@ -20,7 +20,7 @@
 import React, {Component} from 'react';
 import {Icon} from 'react-materialize';
 import {getProducts} from '../Data';
-import './index.css';
+import './index1.css';
 
 
 
@@ -114,27 +114,25 @@ for(var i=0; i<array_value.length; i++){
           return (
 
             <div className="show-product">
-
               <div className="item-wrapper">
 
-                <div className="item-image">
-                  <img className="product-image" src={product.img} alt="product"/>
-                </div>
+                 <div className="item-image">
+                    <img className="product-image" src={product.img} alt="product"/>
+                  </div>
 
                     <div className="item-name">
-                        <div className="product-info">
+                      <div className="product-info">
 
-                    <h3 id="product-name">{product.name}</h3>
+                     <h3 id="product-name">{product.name}</h3>
 
-                        </div>
+                      </div>
 
                      <div className="product">
 
-                    <p id="product-description1">{product.description}</p>
+                         <p id="product-description1">{product.description}</p>
+                         <p id="product-price">${product.price}</p>
 
-                    <p id="product-price">${product.price}</p>
-
-                     <div>
+                       <div>
 
                         <button onClick={() => this.pass_cart(product)}>
 
@@ -144,18 +142,15 @@ for(var i=0; i<array_value.length; i++){
 
                         </div>
 
-                           </div>
+                        </div>
 
-                 
                     </div>
               </div>
-
-
 
             </div>
                    )
 
-            }
+           }
         })
       }
   </div>

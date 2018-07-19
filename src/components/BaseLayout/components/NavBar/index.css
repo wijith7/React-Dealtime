@@ -29,3 +29,6 @@
   color: black;
   transition: 0.5s;
 }
+.shopping-cart{
+  align-items: center;
+}

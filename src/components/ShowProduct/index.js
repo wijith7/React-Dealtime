@@ -17,9 +17,9 @@
 */
 
 //Dependencies
-import React, {Component} from 'react';
-import {Icon} from 'react-materialize';
-import {getProducts} from '../Data';
+import React, { Component } from 'react';
+import { Icon } from 'react-materialize';
+import { getProducts } from '../Data';
 import './index.css';
 import axios from 'axios';
 
@@ -40,15 +40,15 @@ export default class ShowProduct extends React.Component {
     }
   }
 
-  submit(ID,stock){
+  submit(ID, stock) {
 
     // Get access_token from localstorage
-var access_token = localStorage.getItem('access_token');
+    var access_token = localStorage.getItem('access_token');
 
     //console.log(this.inputNode.value);
 
-  let axiosConfig = {
-    headers: {
+    let axiosConfig = {
+      headers: {
 
         "Access-Control-Allow-Origin": "*",
         "Accept": "*/*",
@@ -56,29 +56,31 @@ var access_token = localStorage.getItem('access_token');
         //"Authorization": "Bearer " + access_token
 
         "Authorization": "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
-   
+
+      }
+    };
+
+    // by this we send put request through the inventory_API for add Items for the store 
+
+    return axios.put("https://localhost:8243/inventoryapi/1.0.0/order/" + ID, { "stock": eval(this.inputNode.value) + eval(stock) }, axiosConfig) //FRONTEND_URL
+      .then(function (res) {
+
+        console.log("RESPONSE RECEIVED: ", res);
+        console.log("RESPONSE data: ", res.data);
+        let products = res.data;
+        return (products);
+
+      }).catch((err) => {
+        console.log("AXIOS ERROR: ", err);
+
+      });
+
   }
-  };
-
-  // by this we send put request through the inventory_API for add Items for the store 
-
-  return axios.put("https://localhost:8243/inventoryapi/1.0.0/order/"+ID,{"stock": eval(this.inputNode.value) + eval(stock)} ,axiosConfig) //FRONTEND_URL
-  .then(function(res){
-    console.log("RESPONSE RECEIVED: ", res);
-    console.log("RESPONSE data: ", res.data);
-    let products = res.data;
-    return(products);
-  }).catch((err) => {
-    console.log("AXIOS ERROR: ", err);
-
-  });
-
-}
   componentDidMount() {
     //setState loading
-    this.setState({loading: true});
+    this.setState({ loading: true });
     getProducts().then((res = []) => {
-    this.setState({products: res, loading: false})
+      this.setState({ products: res, loading: false })
     });
   }
 
@@ -94,15 +96,15 @@ var access_token = localStorage.getItem('access_token');
     }
 
     return (<div>{
-        this.state.products.map((product) => {
+      this.state.products.map((product) => {
 
-          if (product.ID == ID_Number) {
-            return (
+        if (product.ID == ID_Number) {
+          return (
             <div className="show-product">
               <div className="item-wrapper">
                 <div className="item-image">
 
-                  <img className="product-image" src={product.img} alt="product"/>
+                  <img className="product-image" src={product.img} alt="product" />
 
                 </div>
 
@@ -120,7 +122,7 @@ var access_token = localStorage.getItem('access_token');
                     <Icon small="small" id="add-icon">add_shopping_cart</Icon>
                   </div>
 
-                  </div>
+                </div>
 
               </div>
 
@@ -130,12 +132,12 @@ var access_token = localStorage.getItem('access_token');
 
                   <label>
                     Numbers of items:
-                    <input type="Number"ref={node =>(this.inputNode = node)} />
+                    <input type="Number" ref={node => (this.inputNode = node)} />
                   </label>
 
                   <div>
 
-                      <input type="submit" className="button success"  onClick={() => this.submit(product.ID,product.stock)}/>
+                    <input type="submit" value="Add" className="button success" onClick={() => this.submit(product.ID, product.stock)} />
 
 
                   </div>
@@ -146,9 +148,9 @@ var access_token = localStorage.getItem('access_token');
 
             </div>)
 
-          }
-        })
-      }
+        }
+      })
+    }
     </div>);
 
   }

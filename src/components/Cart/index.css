@@ -1,28 +1,32 @@
 
 .product-items {
-  display: inline;
   
-  justify-content:center;
-  align-items: center;
+  display: flex;
+  justify-content:left;
+  align-items: left;
   width: auto;
-  padding-left:200px;
   padding-top:20px;
 }
 
 .product{
 
-  padding-left:10em;
-  border: 5px solid green;
-  width: 800px;
+  position: relative;
+  width: 80px;
   padding-bottom: 10px;
 
 }
 .button{
   padding-left: 2px;
-  margin: 2px;
+  margin: 1px;
   display: flex;
 
 }
 .item-form{
-  align-items: left;
+  position: absolute;
+  align-items: right;
+  right: 0;
+  display: flex;
+  bottom: 0px;
+  padding-bottom:5px; 
+  
 }

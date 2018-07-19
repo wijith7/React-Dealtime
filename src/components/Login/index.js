@@ -16,105 +16,108 @@
 * under the License.
 */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './index.css';
 import axios from 'axios';
 
 class Login extends Component {
 
-constructor(props){
-super(props);
-this.state={
+  constructor(props) {
+    super(props);
+    this.state = {
 
-username:'',
-password:''
+      username: '',
+      password: ''
 
-}
-  this.login=this.login.bind(this);
+    }
+    this.login = this.login.bind(this);
 
-}
+  }
 
-login(){
+  login() {
 
     var userName = document.getElementById('userName').value;
     var password = document.getElementById('passWord').value;
 
-      //store username and password in data variable
-    var data = "grant_type=password&username="+userName+"&"+"password="+password; 
+    //store username and password in data variable
+    var data = "grant_type=password&username=" + userName + "&" + "password=" + password;
 
     let axiosConfig = {
 
       headers: {
-          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-          "Access-Control-Allow-Origin": "*",
-          "Accept": "*/*",
-          'Authorization': 'Basic ' + (new Buffer(
+        
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        "Access-Control-Allow-Origin": "*",
+        "Accept": "*/*",
+        'Authorization': 'Basic ' + (new Buffer(
 
-              // 'Consumer Key' + ' : ' + ' Consumer Secret'
-            'ynlrljIfzNq3fSowtP2FybQ_xqsa'+':'+'5mcIE9EzLd7VZfajHmZTWjHUhgMa' 
+          // 'Consumer Key' + ' : ' + ' Consumer Secret'
+          'ynlrljIfzNq3fSowtP2FybQ_xqsa' + ':' + '5mcIE9EzLd7VZfajHmZTWjHUhgMa'
 
-              // Encode using base64
-              ).toString('base64')) 
+          // Encode using base64
+        ).toString('base64'))
       }
     };
 
-      //this is requesting USER_NAME And PASSWORD from Token API
+    //this is requesting USER_NAME And PASSWORD from Token API
 
     axios.post("https://localhost:8243/login/1.0.0/oauth2/token", data, axiosConfig) //FRONTEND_URL
-    .then((res) => {
+      .then((res) => {
 
-      console.log("RESPONSE RECEIVED: ", res.data);
+        console.log("RESPONSE RECEIVED: ", res.data);
 
-      //Store access_token in localStorage
+        //Store access_token in localStorage
 
-      localStorage.setItem("access_token",res.data.access_token);
+        localStorage.setItem("access_token", res.data.access_token);
 
-;
+        ;
 
-//if user_name and passwors are correct go to the product page
-if(res.status==200){
+        //if user_name and passwors are correct go to the product page
+        if (res.status == 200) {
 
-   document.location.href = "http://localhost:3000/products";
+          document.location.href = "http://localhost:3000/products";
 
- }else{
+        }
+        else {
 
-   alert("In correct Username or Password");
+          alert("In correct Username or Password");
 
- }
+        }
 
-    })
-    .catch((err) => {
-      console.log("AXIOS ERROR: ", err);
+      })
+      .catch((err) => {
 
-      alert("Username or Password Incorrect");
+        console.log("AXIOS ERROR: ", err);
 
-    });
+        alert("Username or Password Incorrect");
+
+      });
 
 
 
-}
+  }
   render() {
     return (
 
       <div className="login_place" >
-      <div className="row" id="Body" >
-        <div className="medium-5 columns left" >
+        <div className="row" id="Body" >
+          <div className="medium-5 columns left" >
 
-        <h4>Login</h4>
+            <h4>Login</h4>
 
-        <label> Username</label>
+            <label> Username</label>
 
-        <input type="text" id= "userName" name="username" placeholder="Username"/>
+            <input type="text" id="userName" name="username" placeholder="Username" />
 
-        <label>Password</label>
-        
-        <input align="center" type="password" id ="passWord" name="password"  placeholder="password" />
+            <label>Password</label>
 
-        <input type="submit" className="button success" value="Login" onClick={this.login}/>
+            <input align="center" type="password" id="passWord" name="password" placeholder="password" />
+
+            <input type="submit" className="button success" value="Login" onClick={this.login} />
 
 
+          </div>
         </div>
-      </div>
       </div>
     );
   }

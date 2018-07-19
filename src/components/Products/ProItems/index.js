@@ -20,6 +20,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getProducts } from '../../Data';
+import 'typeface-roboto'
 
 export default class ProItems extends React.Component {
 

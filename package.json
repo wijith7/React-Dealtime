@@ -24,7 +24,9 @@
     "eject": "react-scripts eject"
   },
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack": "^4.16.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wijith7/React-Dealtime.git"

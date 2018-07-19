@@ -25,45 +25,45 @@
 import axios from 'axios';
 
 
-export function getProducts()  {
+export function getProducts() {
 
   //retrive access token that store in the localStorage
-var access_token = localStorage.getItem('access_token');
+  var access_token = localStorage.getItem('access_token');
 
   //This can be compose as a reuseble component look for that
 
   let axiosConfig = {
     headers: {
 
-        "Access-Control-Allow-Origin": "*",
-        "Accept": "*/*",
+      "Access-Control-Allow-Origin": "*",
+      "Accept": "*/*",
 
-        //"Authorization": "Bearer " + access_token
-        "Authorization": "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
+      "Authorization": "Bearer " + access_token
+      //"Authorization": "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
 
-        //I Have to add credential convertion to BEARER
-        // Chenge this after complete the codingssssss
+      //I Have to add credential convertion to BEARER
+      // Chenge this after complete the codingssssss
 
-        
-  }
+
+    }
   };
-//.......................................
+  //.......................................
 
   //This is requesting items from Item_Api
   //all means it retrive all the items and list them on the page
 
   return axios.get("https://localhost:8243/itemapi/1.0.0/order/all", axiosConfig) //FRONTEND_URL
 
-  .then(function(res){
-    console.log("RESPONSE RECEIVED: ", res);
-    console.log("RESPONSE data: ", res.data);
-    let products = res.data;
-    return(products);
+    .then(function (res) {
+      console.log("RESPONSE RECEIVED: ", res);
+      console.log("RESPONSE data: ", res.data);
+      let products = res.data;
+      return (products);
 
-  }).catch((err) => {
-    console.log("AXIOS ERROR: ", err);
+    }).catch((err) => {
+      console.log("AXIOS ERROR: ", err);
 
-  });
+    });
 }
 
 

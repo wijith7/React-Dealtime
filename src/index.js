@@ -32,21 +32,22 @@ import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
     <BrowserRouter>
-    <BaseLayout>
-<Switch>
-      <Route path="/products" component={Products} />
+        <BaseLayout>
+            <Switch>
+                
+                <Route path="/products" component={Products} />
+                <Route path="/show_products_for_buyers/:ID" component={show_products_B} />
+                <Route path="/login" component={Login} />
+                <Route exact path="/show_products/:ID" component={ShowProduct} />
+                <Route path="/cart" component={Cart} />
+                <Route path="/inventory" component={Inventory} />
+                <Route path="/inventory_items" component={Inventory_Items} />
+                <Route path="/inventory_items" component={Inventory_Items} />
 
-      <Route path="/show_products_for_buyers/:ID" component={show_products_B} />
-      <Route path="/login" component={Login}  />
-      <Route exact path="/show_products/:ID" component={ShowProduct} />
-      <Route path="/cart" component={Cart} />
-      <Route path="/inventory" component={Inventory} />
-      <Route path="/inventory_items" component={Inventory_Items} />
-      <Route path="/inventory_items" component={Inventory_Items} />
 
-</Switch>
-    </BaseLayout>
+            </Switch>
+        </BaseLayout>
     </BrowserRouter>
 
-, document.getElementById('root'));
-  registerServiceWorker();
+    , document.getElementById('root'));
+registerServiceWorker();

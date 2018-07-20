@@ -17,9 +17,9 @@
 */
 
 //Dependencies
-import React, {Component} from 'react';
-import {Icon} from 'react-materialize';
-import {getProducts} from '../Data';
+import React, { Component } from 'react';
+import { Icon } from 'react-materialize';
+import { getProducts } from '../Data';
 import './index1.css';
 
 
@@ -40,58 +40,58 @@ export default class ShowProduct extends React.Component {
   }
 
   //this is use for pass product details to cart
-pass_cart(product){
+  pass_cart(product) {
 
- var orderJSON = {"ID":product.ID,"name":product.name,"price":product.price,"stock":product.stock};
+    var orderJSON = { "ID": product.ID, "name": product.name, "price": product.price, "stock": product.stock ,"order":1};
 
- var cart = localStorage.getItem('item');
+    var cart = localStorage.getItem('item');
 
- var array_value = JSON.parse(localStorage.getItem('item'));
+    var array_value = JSON.parse(localStorage.getItem('item'));
 
-if(cart != null){
+    if (cart != null) {
 
-for(var i=0; i<array_value.length; i++){
+      for (var i = 0; i < array_value.length; i++) {
 
- if(orderJSON.ID == array_value[i].ID ){
+        if (orderJSON.ID == array_value[i].ID) {
 
-    alert("Item is allready in the Cart");
+          alert("Item is allready in the Cart");
 
-      return;
- }
+          return;
+        }
 
-}
+      }
 
-}
+    }
 
- var cartObj = [];
+    var cartObj = [];
 
- if (cart == null){
+    if (cart == null) {
 
-   cartObj.push(orderJSON);
+      cartObj.push(orderJSON);
 
- }else {
+    } else {
 
-   cartObj = JSON.parse(cart);
-   cartObj.push(orderJSON);
+      cartObj = JSON.parse(cart);
+      cartObj.push(orderJSON);
 
- }
- localStorage.setItem("item",JSON.stringify(cartObj));
-
-
-
- alert("Item is add to the cart successfully");
+    }
+    localStorage.setItem("item", JSON.stringify(cartObj));
 
 
 
-}
+    alert("Item is add to the cart successfully");
+
+
+
+  }
 
 
 
   componentDidMount() {
     //setState loading
-    this.setState({loading: true});
+    this.setState({ loading: true });
     getProducts().then((res = []) => {
-    this.setState({products: res, loading: false})
+      this.setState({ products: res, loading: false })
     });
   }
 
@@ -107,54 +107,53 @@ for(var i=0; i<array_value.length; i++){
 
     return (<div>{
 
-        this.state.products.map((product) => {
+      this.state.products.map((product) => {
 
-        if (product.ID == ID_Number)
-        {
+        if (product.ID == ID_Number) {
           return (
 
             <div className="show-product">
               <div className="item-wrapper">
 
-                 <div className="item-image">
-                    <img className="product-image" src={product.img} alt="product"/>
+                <div className="item-image">
+                  <img className="product-image" src={product.img} alt="product" />
+                </div>
+
+                <div className="item-name">
+                  <div className="product-info">
+
+                    <h3 id="product-name">{product.name}</h3>
+
                   </div>
 
-                    <div className="item-name">
-                      <div className="product-info">
+                  <div className="product">
 
-                     <h3 id="product-name">{product.name}</h3>
+                    <p id="product-description1">{product.description}</p>
+                    <p id="product-price">${product.price}</p>
 
-                      </div>
+                    <div>
 
-                     <div className="product">
+                      <button onClick={() => this.pass_cart(product)}>
 
-                         <p id="product-description1">{product.description}</p>
-                         <p id="product-price">${product.price}</p>
+                        <Icon medium="small" id="cart"><p id="product-description" >Add To Cart</p>add_shopping_cart</Icon>
 
-                       <div>
-
-                        <button onClick={() => this.pass_cart(product)}>
-
-                            <Icon medium="small" id="cart"><p id= "product-description" >Add To Cart</p>add_shopping_cart</Icon>
-
-                        </button>
-
-                        </div>
-
-                        </div>
+                      </button>
 
                     </div>
+
+                  </div>
+
+                </div>
               </div>
 
             </div>
-                   )
+          )
 
-           }
-        })
-      }
-  </div>
-  );
+        }
+      })
+    }
+    </div>
+    );
 
   }
 }

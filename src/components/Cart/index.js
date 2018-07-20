@@ -28,11 +28,13 @@ import axios from "axios";
 import Button from "@material-ui/core/Button";
 
 export default class ProItems extends React.Component {
+
   constructor(props) {
     super(props);
-    this.state = { value: "" };
+    this.state = { value: "1" };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    console.log(this.state.value);
   }
 
   handleChange(event) {
@@ -40,15 +42,67 @@ export default class ProItems extends React.Component {
   }
 
   handleSubmit(event) {
-    //console.log(this.state.value);
     //event.preventDefault();
   }
+
   checkout() {
-    console.log("you can do this!");
+    //var cart = localStorage.getItem("item");
+
+    var array_value = JSON.parse(localStorage.getItem("item"));
+
+    //console.log(length);
+
+    // Get access_token from localstorage
+    //var access_token = localStorage.getItem("access_token");
+
+    for (var i = 0; i < array_value.length; i++) {
+
+
+      let axiosConfig = {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          Accept: "*/*",
+          //"Authorization": "Bearer " + access_token
+          Authorization: "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
+        }
+      };
+      console.log(
+        array_value[i].ID,
+        array_value[i].stock,
+        array_value[i].order
+      );
+      //console.log(array_value.length);
+      // by this we send put request through the inventory_API for add Items for the store
+      axios
+        .put(
+          "https://localhost:8243/orderapi/1.0.0/order/" + array_value[i].ID,
+          { stock: eval(array_value[i].stock) - eval(array_value[i].order) },
+          axiosConfig
+        ) //FRONTEND_URL
+
+        .then(function(res) {
+          console.log("RESPONSE RECEIVED: ", res);
+          console.log("RESPONSE data: ", res.data);
+          let products = res.data;
+          return products;
+        })
+        .catch(err => {
+          console.log("AXIOS ERROR: ", err);
+        });
+
+
+    }
+    
+    localStorage.removeItem("item");
+
+    alert("Items checkout successfully ! ");
+
+
+    window.location.reload();
   }
 
   remove(ID) {
-    var cart = localStorage.getItem("item");
+    var cart = localStorage.getItem("item")
 
     var array_value = JSON.parse(localStorage.getItem("item"));
 
@@ -60,51 +114,28 @@ export default class ProItems extends React.Component {
     }
 
     localStorage.setItem("item", JSON.stringify(cartObj));
+    window.location.reload();
   }
 
-  update(ID, stock) {
-    // console.log(ID);
-    // console.log(stock);
+  update(ID, stock, value) {
+    //console.log(ID);
+    //console.log(value);
 
-    if (stock < this.state.value) {
+    if (stock < value) {
       alert("Please Enter less ammount of items");
     } else {
-      alert(this.state.value + "  Items add to the checkout successfully ! ");
+      alert("Items update successfully ! ");
     }
 
-    // Get access_token from localstorage
-    var access_token = localStorage.getItem("access_token");
+    var array_value = JSON.parse(localStorage.getItem("item"));
 
-    //console.log(this.inputNode.value);
-
-    let axiosConfig = {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        Accept: "*/*",
-
-        //"Authorization": "Bearer " + access_token
-
-        Authorization: "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
+    for (var i = 0; i < array_value.length; i++) {
+      if (ID == array_value[i].ID) {
+        array_value[i].order = value;
+        break;
       }
-    };
-
-    // by this we send put request through the inventory_API for add Items for the store
-
-    return axios
-      .put(
-        "https://localhost:8243/orderapi/1.0.0/order/" + ID,
-        { stock: eval(stock) - eval(this.state.value) },
-        axiosConfig
-      ) //FRONTEND_URL
-      .then(function(res) {
-        console.log("RESPONSE RECEIVED: ", res);
-        console.log("RESPONSE data: ", res.data);
-        let products = res.data;
-        return products;
-      })
-      .catch(err => {
-        console.log("AXIOS ERROR: ", err);
-      });
+    }
+    localStorage.setItem("item", JSON.stringify(array_value));
   }
 
   render() {
@@ -134,14 +165,16 @@ export default class ProItems extends React.Component {
                       Quentity:
                       <input
                         type="Number"
-                        value="1"
+                        defaultValue="1"
                         ref={this.state.value}
                         onChange={this.handleChange}
                       />
                     </label>
 
                     <Button
-                      onClick={() => this.update(product.ID, product.stock)}
+                      onClick={() =>
+                        this.update(product.ID, product.stock, this.state.value)
+                      }
                       variant="contained"
                       color="primary"
                     >

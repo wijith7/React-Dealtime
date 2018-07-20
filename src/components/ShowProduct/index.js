@@ -17,141 +17,138 @@
 */
 
 //Dependencies
-import React, { Component } from 'react';
-import { Icon } from 'react-materialize';
-import { getProducts } from '../Data';
-import './index.css';
-import axios from 'axios';
+import React, { Component } from "react";
+import { Icon } from "react-materialize";
+import { getProducts } from "../Data";
+import "./index.css";
+import axios from "axios";
 
 
 export default class ShowProduct extends React.Component {
-
   handleSubmit = event => {
-    event.preventDefault()
-    console.log(this.inputNode.value)
+    event.preventDefault();
+    console.log(this.inputNode.value);
     var inputval = this.inputNode.value;
-  }
+  };
 
   constructor() {
     super();
     this.state = {
       products: [],
       loading: false
-    }
+    };
   }
 
-  submit(ID, stock) {
-
+  Add(ID, stock) {
+    window.location.reload();
     // Get access_token from localstorage
-    var access_token = localStorage.getItem('access_token');
+    var access_token = localStorage.getItem("access_token");
 
     //console.log(this.inputNode.value);
 
     let axiosConfig = {
       headers: {
-
         "Access-Control-Allow-Origin": "*",
-        "Accept": "*/*",
+        Accept: "*/*",
 
         //"Authorization": "Bearer " + access_token
 
-        "Authorization": "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
-
+        Authorization: "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
       }
     };
 
-    // by this we send put request through the inventory_API for add Items for the store 
+    // by this we send put request through the inventory_API for add Items for the store
 
-    return axios.put("https://localhost:8243/inventoryapi/1.0.0/order/" + ID, { "stock": eval(this.inputNode.value) + eval(stock) }, axiosConfig) //FRONTEND_URL
-      .then(function (res) {
-
+    return axios
+      .put(
+        "https://localhost:8243/inventoryapi/1.0.0/order/" + ID,
+        { stock: eval(this.inputNode.value) + eval(stock) },
+        axiosConfig
+      ) //FRONTEND_URL
+      .then(function(res) {
         console.log("RESPONSE RECEIVED: ", res);
         console.log("RESPONSE data: ", res.data);
         let products = res.data;
-        return (products);
-
-      }).catch((err) => {
+        return products;
+      })
+      .catch(err => {
         console.log("AXIOS ERROR: ", err);
-
       });
-
   }
   componentDidMount() {
     //setState loading
     this.setState({ loading: true });
     getProducts().then((res = []) => {
-      this.setState({ products: res, loading: false })
+      this.setState({ products: res, loading: false });
     });
   }
 
   render() {
-
     //get ID from the url add show the pertiquler product
-    const ID_Number = (parseInt(this.props.match.params.ID));
+    const ID_Number = parseInt(this.props.match.params.ID);
 
     if (this.state.loading) {
-
-      return (<div>Loading ...</div>);
-
+      return <div>Loading ...</div>;
     }
 
-    return (<div>{
-      this.state.products.map((product) => {
+    return (
+      <div className="product">
+        {this.state.products.map(product => {
+          if (product.ID == ID_Number) {
+            return (
+              <div className="show-product">
+                <div className="item-wrapper">
+                  <div className="item-image">
+                    <img
+                      className="product-image"
+                      src={product.img}
+                      alt="product"
+                    />
+                  </div>
 
-        if (product.ID == ID_Number) {
-          return (
-            <div className="show-product">
-              <div className="item-wrapper">
-                <div className="item-image">
+                  <div className="item-name">
+                    <div className="product-info">
+                      <h3 id="product-name">{product.name}</h3>
+                    </div>
 
-                  <img className="product-image" src={product.img} alt="product" />
-
+                    <div className="product-bio">
+                      <p id="product-description">{product.description}</p>
+                      <p id="product-description">
+                        Items in the stock :{product.stock}
+                      </p>
+                      <p id="product-price">${product.price}</p>
+                      <Icon small="small" id="add-icon">
+                        add_shopping_cart
+                      </Icon>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="item-name">
-                  <div className="product-info">
+                <div className="item-form">
+                  <form onSubmit={this.handleSubmit}>
+                    <label>
+                      Numbers of items:
+                      <input
+                        type="Number"
+                        ref={node => (this.inputNode = node)}
+                      />
+                    </label>
 
-                    <h3 id="product-name">{product.name}</h3>
-
-                  </div>
-
-                  <div className="product-bio">
-                    <p id="product-description">{product.description}</p>
-                    <p id="product-description">Items in the stock :{product.stock}</p>
-                    <p id="product-price">${product.price}</p>
-                    <Icon small="small" id="add-icon">add_shopping_cart</Icon>
-                  </div>
-
+                    <div>
+                      <input
+                        type="submit"
+                        value="Add"
+                        className="button success"
+                        onClick={() => this.Add(product.ID, product.stock)}
+                      />
+                    </div>
+                  </form>
                 </div>
-
               </div>
-
-              <div className="item-form">
-
-                <form onSubmit={this.handleSubmit}>
-
-                  <label>
-                    Numbers of items:
-                    <input type="Number" ref={node => (this.inputNode = node)} />
-                  </label>
-
-                  <div>
-
-                    <input type="submit" value="Add" className="button success" onClick={() => this.submit(product.ID, product.stock)} />
-
-
-                  </div>
-
-
-                </form>
-              </div>
-
-            </div>)
-
-        }
-      })
-    }
-    </div>);
-
+            );
+          }
+        })}
+      </div>
+    );
   }
 }

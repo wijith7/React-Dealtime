@@ -38,7 +38,7 @@ ReactDOM.render(
                 <Route path="/products" component={Products} />
                 <Route path="/show_products_for_buyers/:ID" component={show_products_B} />
                 <Route path="/login" component={Login} />
-                <Route exact path="/show_products/:ID" component={ShowProduct} />
+                <Route exact path="/showproducts/:ID" component={ShowProduct} />
                 <Route path="/cart" component={Cart} />
                 <Route path="/inventory" component={Inventory} />
                 <Route path="/inventory_items" component={Inventory_Items} />

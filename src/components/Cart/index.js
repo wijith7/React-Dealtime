@@ -63,7 +63,7 @@ export default class ProItems extends React.Component {
           "Access-Control-Allow-Origin": "*",
           Accept: "*/*",
           //"Authorization": "Bearer " + access_token
-          Authorization: "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
+          //Authorization: "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
         }
       };
       console.log(
@@ -96,7 +96,6 @@ export default class ProItems extends React.Component {
     localStorage.removeItem("item");
 
     alert("Items checkout successfully ! ");
-
 
     window.location.reload();
   }

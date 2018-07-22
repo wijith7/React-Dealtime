@@ -35,7 +35,6 @@ export default class BaseLayout extends Component {
     super(props);
     this.state = {
       index: 0,
-      logged: false,
     };
   }
 
@@ -47,10 +46,10 @@ export default class BaseLayout extends Component {
   render() {
     const index = this.state.index % classNames.length;
     const className = classNames[index];
-    return(
+    return (
       <div>
         <div className={className}>
-          <Navbar logged={this.state.logged} />
+          <Navbar logged={this.props.logged} />
           <Header />
         </div>
         <div className="content">

@@ -22,43 +22,43 @@
 // This is the js that we call data from InventoryAPI
 
 import axios from 'axios';
-export function getProducts()  {
+export function getProducts() {
 
   //By this we retrive access token from the local storage
-var access_token = localStorage.getItem('access_token');
+  var access_token = localStorage.getItem('access_token');
 
 
-//this part can be reuse
+  //this part can be reuse
 
   let axiosConfig = {
     headers: {
 
-        "Access-Control-Allow-Origin": "*",
-        "Accept": "*/*",
-        //"Authorization": "Bearer " + access_token
-        "Authorization": "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
+      "Access-Control-Allow-Origin": "*",
+      "Accept": "*/*",
+      "Authorization": "Bearer " + access_token
+      //"Authorization": "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
 
-        //I Have to add credential convertion to BEARER
+      //I Have to add credential convertion to BEARER
 
 
-        //91c3130c-2f4a-3a17-b4db-eaa9673c706c
-  }
+      //91c3130c-2f4a-3a17-b4db-eaa9673c706c
+    }
   };
 
-//.......................
+  //.......................
 
-// this Request data for the InventoryAPI
+  // this Request data for the InventoryAPI
 
   return axios.get("https://localhost:8243/inventoryapi/1.0.0/order/all", axiosConfig) //FRONTEND_URL
-  .then(function(res){
-    console.log("RESPONSE RECEIVED: ", res);
-    console.log("RESPONSE data: ", res.data);
-    let products = res.data;
-    return(products);
-  }).catch((err) => {
-    console.log("AXIOS ERROR: ", err);
+    .then(function (res) {
+      console.log("RESPONSE RECEIVED: ", res);
+      console.log("RESPONSE data: ", res.data);
+      let products = res.data;
+      return (products);
+    }).catch((err) => {
+      console.log("AXIOS ERROR: ", err);
 
-  });
+    });
 }
 
 

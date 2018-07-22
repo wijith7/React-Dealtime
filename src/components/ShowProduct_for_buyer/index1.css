@@ -90,7 +90,6 @@ i:hover {
 
 .show-product {
   width: 100vw;
-  display: flex;
   justify-content: center;
   align-items: center;
   border-top: 4px solid black;
@@ -99,7 +98,7 @@ i:hover {
 .item-wrapper {
   background-color: white;
   width: 50em;
-  display: flex;
+  
   justify-content: center;
   align-items: center;
   height: 40em;
@@ -201,7 +200,7 @@ i:hover {
 
 .product{
 
-  padding-left:10em;
+  padding-left:-10em;
   width: 800px;
   padding-bottom: 10px;
   border: 5px ;

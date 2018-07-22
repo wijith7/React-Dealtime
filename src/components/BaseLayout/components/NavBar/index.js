@@ -53,9 +53,8 @@ const Navbar = (props) => (
           <Button href="/products" >
         HOME
       </Button>
-      <Button href="/login" >
-        LOGIN
-      </Button>
+      
+      {props.logged ? (<Button href="/logout"  >LOGOUT</Button>) : (<Button href="/login"  >LOGIN</Button>) }
       <Button href="/inventory_items" >
         INVENTORY
       </Button>

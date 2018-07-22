@@ -22,7 +22,7 @@ import { Icon } from "react-materialize";
 import { getProducts } from "../Data";
 import "./index.css";
 import axios from "axios";
-
+import Button from "@material-ui/core/Button";
 
 export default class ShowProduct extends React.Component {
   handleSubmit = event => {
@@ -37,23 +37,27 @@ export default class ShowProduct extends React.Component {
       products: [],
       loading: false
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
   Add(ID, stock) {
     window.location.reload();
     // Get access_token from localstorage
     var access_token = localStorage.getItem("access_token");
 
-    //console.log(this.inputNode.value);
+    console.log(this.state.value);
 
     let axiosConfig = {
       headers: {
         "Access-Control-Allow-Origin": "*",
         Accept: "*/*",
 
-        //"Authorization": "Bearer " + access_token
+        Authorization: "Bearer " + access_token
 
-        Authorization: "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
+        //Authorization: "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
       }
     };
 
@@ -62,7 +66,7 @@ export default class ShowProduct extends React.Component {
     return axios
       .put(
         "https://localhost:8243/inventoryapi/1.0.0/order/" + ID,
-        { stock: eval(this.inputNode.value) + eval(stock) },
+        { stock: eval(this.state.value) + eval(stock) },
         axiosConfig
       ) //FRONTEND_URL
       .then(function(res) {
@@ -92,55 +96,55 @@ export default class ShowProduct extends React.Component {
     }
 
     return (
-      <div className="product">
+      <div className="product1">
         {this.state.products.map(product => {
           if (product.ID == ID_Number) {
             return (
-              <div className="show-product">
-                <div className="item-wrapper">
-                  <div className="item-image">
+              <div className="show-product1">
+                <div className="item-wrapper1">
+                  <div className="item-image1">
                     <img
-                      className="product-image"
+                      className="product-image1"
                       src={product.img}
                       alt="product"
                     />
                   </div>
 
-                  <div className="item-name">
-                    <div className="product-info">
+                  <div className="item-name1">
+                    <div className="product-info1">
                       <h3 id="product-name">{product.name}</h3>
                     </div>
 
-                    <div className="product-bio">
+                    <div className="product-bio1">
                       <p id="product-description">{product.description}</p>
                       <p id="product-description">
                         Items in the stock :{product.stock}
                       </p>
                       <p id="product-price">${product.price}</p>
-                      <Icon small="small" id="add-icon">
-                        add_shopping_cart
-                      </Icon>
                     </div>
                   </div>
                 </div>
 
-                <div className="item-form">
+                <div className="item-form1">
                   <form onSubmit={this.handleSubmit}>
-                    <label>
-                      Numbers of items:
-                      <input
-                        type="Number"
-                        ref={node => (this.inputNode = node)}
-                      />
-                    </label>
+                    <label>Numbers of items:</label>
 
                     <div>
                       <input
-                        type="submit"
-                        value="Add"
-                        className="button success"
-                        onClick={() => this.Add(product.ID, product.stock)}
+                        type="Number"
+                        ref={this.state.value}
+                        onChange={this.handleChange}
                       />
+
+                      <Button
+                        onClick={() =>
+                          this.Add(product.ID, product.stock, this.state.value)
+                        }
+                        variant="contained"
+                        color="primary"
+                      >
+                        ADD
+                      </Button>
                     </div>
                   </form>
                 </div>

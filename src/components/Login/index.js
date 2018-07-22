@@ -17,6 +17,7 @@
 */
 
 import React, { Component } from 'react';
+import {Redirect} from 'react-router-dom';
 import './index.css';
 import axios from 'axios';
 
@@ -27,7 +28,8 @@ class Login extends Component {
     this.state = {
 
       username: '',
-      password: ''
+      password: '',
+      logged: false,
 
     }
     this.login = this.login.bind(this);
@@ -73,9 +75,9 @@ class Login extends Component {
         ;
 
         //if user_name and passwors are correct go to the product page
-        if (res.status == 200) {
-
-          document.location.href = "http://localhost:3000/products";
+        if (res.status === 200) {
+          this.props.changeLogged(true)
+          this.setState({logged: true})
 
         }
         else {
@@ -97,6 +99,10 @@ class Login extends Component {
 
   }
   render() {
+
+    if(this.state.logged) {
+      return (<Redirect to="/products"/>);
+    }
     return (
 
       <div className="login_place" >

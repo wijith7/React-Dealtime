@@ -30,34 +30,25 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import { isNull } from 'util';
 
 
 //navigation bar top left corner
 const Navbar = (props) => (
-  // <nav className="navbar">
-  //   <div className="nav-links">
-  //     <ul>
-  //       <li><NavLink activeClassName="selected" className="nav-link" exact to="/products">Home</NavLink></li>
-  //       <li><NavLink activeClassName="selected" className="nav-link" to="/inventory_items">Inventory</NavLink></li>
-  //       {props.logged ? (<li><NavLink activeClassName="selected" className="nav-link" to="/logout">Logout</NavLink></li>) : (<li><NavLink activeClassName="selected" className="nav-link" to="/login">Login</NavLink></li>)}
-  //     </ul>
-  //   </div>
-  //   <div className="shopping-cart">
-  //     <NavLink to="/cart"><Icon medium>shopping_cart</Icon></NavLink>
-  //   </div>
-  // </nav>
-
+  
+  
   <AppBar position="static" color="default">
         <Toolbar variant="dense">
           <Typography variant="title" color="inherit">
+
           <Button href="/products" >
         HOME
       </Button>
       
-      {props.logged ? (<Button href="/logout"  >LOGOUT</Button>) : (<Button href="/login"  >LOGIN</Button>) }
-      <Button href="/inventory_items" >
-        INVENTORY
-      </Button>
+      {props.logged ? (<Button href="/logout" >LOGOUT</Button>) : (<Button href="/login"  >LOGIN</Button>) }
+     
+      
+      {props.authorized ? ( <Button  href="/inventory_items" > INVENTORY </Button>): null }
       
       <Button href="/cart" >
         CART

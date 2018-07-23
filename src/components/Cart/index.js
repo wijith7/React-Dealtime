@@ -53,7 +53,7 @@ export default class ProItems extends React.Component {
     //console.log(length);
 
     // Get access_token from localstorage
-    //var access_token = localStorage.getItem("access_token");
+    var access_token = localStorage.getItem("access_token");
 
     for (var i = 0; i < array_value.length; i++) {
 
@@ -62,7 +62,7 @@ export default class ProItems extends React.Component {
         headers: {
           "Access-Control-Allow-Origin": "*",
           Accept: "*/*",
-          //"Authorization": "Bearer " + access_token
+          "Authorization": "Bearer " + access_token
           //Authorization: "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
         }
       };

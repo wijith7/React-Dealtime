@@ -34,41 +34,53 @@ class ShoppingApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = { logged: false };
+    this.state = { authorized: false };
     this.changeLogged = this.changeLogged.bind(this);
   }
 
   changeLogged(logged) {
-    this.setState({ logged });
+    this.setState(logged);
   }
+  //   Check whether access_token_available if so
+  componentDidMount() {
+    let access_token_available = localStorage.getItem("access_token");
+    var scope = JSON.parse(localStorage.getItem("scope"));
 
-
-  componentDidMount(){
-    //   Check whether cookie is there if so 
-
-    // let access_token_available=localStorage.getItem('access_token');
-
-    // if(access_token_available!=null){
-    //   this.setState({logged: true});
-    //}
+    if (access_token_available != null && scope != null) {
+      this.setState({ logged: true });
+      if (scope.indexOf("sell") >=0) {
+        this.setState({ authorized: true });
+      }
+    }
   }
 
   render() {
-      const { logged } = this.state;
+    const { logged } = this.state;
+    const { authorized } = this.state;
     return (
       <BrowserRouter>
-        <BaseLayout logged={logged}>
+        <BaseLayout logged={logged} authorized={authorized}>
           <Switch>
-            <Route path="/products" component={Products} />
             <Route
               path="/show_products_for_buyers/:ID"
               component={show_products_B}
             />
-            <Route path="/login" render={() => <Login changeLogged={this.changeLogged} logged={logged} />} />
+            <Route
+              path="/login"
+              render={() => (
+                <Login changeLogged={this.changeLogged} logged={logged} />
+              )}
+            />
+
+            <Route
+              path="/inventory_items"
+              render={() => <Inventory_Items authorized={authorized} />}
+            />
+
+            <Route path="/products" component={Products} />
             <Route exact path="/showproducts/:ID" component={ShowProduct} />
             <Route path="/cart" component={Cart} />
             <Route path="/inventory" component={Inventory} />
-            <Route path="/inventory_items" component={Inventory_Items} />
-            <Route path="/inventory_items" component={Inventory_Items} />
           </Switch>
         </BaseLayout>
       </BrowserRouter>

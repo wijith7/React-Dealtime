@@ -42,7 +42,7 @@ class Login extends Component {
     var password = document.getElementById('passWord').value;
 
     //store username and password in data variable
-    var data = "grant_type=password&username=" + userName + "&" + "password=" + password;
+    var data = "grant_type=password&username=" + userName + "&" + "password=" + password + "&" + "scope=" + "buy sell";
 
     let axiosConfig = {
 
@@ -68,6 +68,17 @@ class Login extends Component {
 
         console.log("RESPONSE RECEIVED: ", res.data);
 
+        var splitSentence = res.data.scope.split(" ");
+        var stringArray = new Array();
+        for(var i =0; i < splitSentence.length; i++){
+          stringArray.push(splitSentence[i]);
+          
+      }
+
+        console.log("Split data:",  stringArray);
+
+        localStorage.setItem("scope", JSON.stringify(stringArray));
+        
         //Store access_token in localStorage
 
         localStorage.setItem("access_token", res.data.access_token);
@@ -76,7 +87,7 @@ class Login extends Component {
 
         //if user_name and passwors are correct go to the product page
         if (res.status === 200) {
-          this.props.changeLogged(true)
+          this.props.changeLogged({logged: true, authorized: true})
           this.setState({logged: true})
 
         }

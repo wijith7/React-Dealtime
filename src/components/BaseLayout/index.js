@@ -49,7 +49,7 @@ export default class BaseLayout extends Component {
     return (
       <div>
         <div className={className}>
-          <Navbar logged={this.props.logged} />
+          <Navbar logged={this.props.logged} authorized={this.props.authorized}/>
           <Header />
         </div>
         <div className="content">

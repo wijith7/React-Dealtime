@@ -110,7 +110,7 @@ export default class ShowProduct extends React.Component {
                     />
                   </div>
 
-                  <div className="item-name1">
+                  <div className="item-name11">
                     <div className="product-info1">
                       <h3 id="product-name">{product.name}</h3>
                     </div>

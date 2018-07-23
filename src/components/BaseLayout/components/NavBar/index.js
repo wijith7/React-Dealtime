@@ -16,47 +16,52 @@
 * under the License.
 */
 
-
 // Dependencies
-import React from 'react';
-import { Icon } from 'react-materialize';
-import { NavLink } from 'react-router-dom';
-import './index.css';
+import React from "react";
+import { Icon } from "react-materialize";
+import { NavLink } from "react-router-dom";
+import "./index.css";
 
-
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import { isNull } from 'util';
-
+import { withStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import { isNull } from "util";
+import { access } from "fs";
 
 //navigation bar top left corner
-const Navbar = (props) => (
-  
-  
+const Navbar = props => (
   <AppBar position="static" color="default">
-        <Toolbar variant="dense">
-          <Typography variant="title" color="inherit">
+    <Toolbar variant="dense">
+      <Typography variant="title" color="inherit">
+        <Button href="/products">HOME</Button>
 
-          <Button href="/products" >
-        HOME
-      </Button>
-      
-      {props.logged ? (<Button href="/logout" >LOGOUT</Button>) : (<Button href="/login"  >LOGIN</Button>) }
-     
-      
-      {props.authorized ? ( <Button  href="/inventory_items" > INVENTORY </Button>): null }
-      
-      <Button href="/cart" >
-        CART
-      </Button>
-  
-          </Typography>
-        </Toolbar>
-      </AppBar>
+        {props.authorized ? (
+          <Button href="/inventory_items"> INVENTORY </Button>
+        ) : null}
+
+        {props.logged ? (
+          <Button href="/logout">LOGOUT</Button>
+        ) : (
+          <Button href="/login">LOGIN</Button>
+        )}
+
+        
+
+        <IconButton  
+          href="/cart"
+          color="primary"
+          aria-label="Add to shopping cart"
+          
+        >
+          <AddShoppingCartIcon />
+        </IconButton>
+      </Typography>
+    </Toolbar>
+  </AppBar>
 );
 
 export default Navbar;

@@ -77,3 +77,6 @@ i:hover {
   text-transform: uppercase;
   text-align: center;
 }
+i.icon-blue {
+  color:#3f51b5;
+}

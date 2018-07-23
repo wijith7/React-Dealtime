@@ -135,7 +135,11 @@ export default class ShowProduct extends React.Component {
 
                       <button onClick={() => this.pass_cart(product)}>
 
-                        <Icon medium="small" id="cart"><p id="product-description" >Add To Cart</p>add_shopping_cart</Icon>
+                        <i class="medium material-icons icon-blue" ><p id="product-description" >Add To Cart</p>add_shopping_cart</i>
+
+                        
+
+
 
                       </button>
 

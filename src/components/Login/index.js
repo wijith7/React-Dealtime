@@ -20,6 +20,7 @@ import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import './index.css';
 import axios from 'axios';
+import Button from "@material-ui/core/Button";
 
 class Login extends Component {
 
@@ -130,7 +131,18 @@ class Login extends Component {
 
             <input align="center" type="password" id="passWord" name="password" placeholder="password" />
 
-            <input type="submit" className="button success" value="Login" onClick={this.login} />
+            
+
+
+            <Button type="submit" className="button success" value="Login" onClick={this.login} 
+                       
+                      variant="contained"
+                      color="primary"
+                    >
+                      LOGIN
+                    </Button>
+
+            
 
 
           </div>

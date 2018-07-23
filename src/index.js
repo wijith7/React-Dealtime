@@ -41,8 +41,13 @@ class ShoppingApp extends React.Component {
   changeLogged(logged) {
     this.setState(logged);
   }
+
+  
+  //localStorage.removeItem("access_token")
   //   Check whether access_token_available if so
+ 
   componentDidMount() {
+    
     let access_token_available = localStorage.getItem("access_token");
     var scope = JSON.parse(localStorage.getItem("scope"));
 
@@ -52,11 +57,15 @@ class ShoppingApp extends React.Component {
         this.setState({ authorized: true });
       }
     }
+
+
+    
   }
 
   render() {
     const { logged } = this.state;
     const { authorized } = this.state;
+    const { Logout } = this.state;
     return (
       <BrowserRouter>
         <BaseLayout logged={logged} authorized={authorized}>
@@ -81,6 +90,9 @@ class ShoppingApp extends React.Component {
             <Route exact path="/showproducts/:ID" component={ShowProduct} />
             <Route path="/cart" component={Cart} />
             <Route path="/inventory" component={Inventory} />
+
+            <Route path="/logout"  component={Logout}/>
+            
           </Switch>
         </BaseLayout>
       </BrowserRouter>

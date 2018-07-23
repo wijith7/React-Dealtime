@@ -17,30 +17,29 @@
 */
 
 // Dependencies
-import React, { Component } from 'react';
-import Navbar from './components/NavBar';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import './index.css';
+import React, { Component } from "react";
+import Navbar from "./components/NavBar";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import "./index.css";
 
-const classNames = [
-  "first-header",
-  "second-header",
-  "third-header"
-];
-
+const classNames = ["first-header", "second-header", "third-header"];
 
 export default class BaseLayout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      index: 0,
+      index: 0
     };
   }
 
   incrementIndex = () => {
     const newIndex = this.state.index + 1;
-    this.setState({ index: newIndex })
+    this.setState({ index: newIndex });
+  };
+
+  componentDidMount = () => {
+    setInterval(this.incrementIndex, 3000);
   }
 
   render() {
@@ -49,14 +48,15 @@ export default class BaseLayout extends Component {
     return (
       <div>
         <div className={className}>
-          <Navbar logged={this.props.logged} authorized={this.props.authorized}/>
+          <Navbar
+            logged={this.props.logged}
+            authorized={this.props.authorized}
+          />
           <Header />
         </div>
-        <div className="content">
-          {this.props.children}
-        </div>
+        <div className="content">{this.props.children}</div>
         <Footer />
       </div>
-    )
+    );
   }
 }

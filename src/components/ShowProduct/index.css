@@ -19,8 +19,8 @@
   
   }
 
-  .item-name1  {
-    font-size: 40px;
+  .item-name11  {
+    font-size: 30px;
     border: none;
     padding-left: 100px;
      
@@ -52,4 +52,7 @@
     padding-left: 50px;
     
     
+  }
+  .product-image1 {
+    height: 35em;
   }

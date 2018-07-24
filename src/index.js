@@ -57,7 +57,7 @@ class ShoppingApp extends React.Component {
         this.setState({ authorized: true });
       }
     }
-
+    
 
     
   }
@@ -65,7 +65,8 @@ class ShoppingApp extends React.Component {
   render() {
     const { logged } = this.state;
     const { authorized } = this.state;
-    const { Logout } = this.state;
+    
+    
     return (
       <BrowserRouter>
         <BaseLayout logged={logged} authorized={authorized}>
@@ -90,8 +91,9 @@ class ShoppingApp extends React.Component {
             <Route exact path="/showproducts/:ID" component={ShowProduct} />
             <Route path="/cart" component={Cart} />
             <Route path="/inventory" component={Inventory} />
+            <Route path="/logout"  />
 
-            <Route path="/logout"  component={Logout}/>
+           
             
           </Switch>
         </BaseLayout>

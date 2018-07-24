@@ -29,10 +29,27 @@
   color: black;
   transition: 0.5s;
 }
-.shopping-cart{
+.Cart{
   align-items: center;
+  position: absolute;
+  right: 90px;
+  top: 1px;
 }
 .Cart{
   display:inline-flex;
-  padding-left: 1150px;
+  
+}
+.Login{
+position: absolute;
+right: 15px;
+top: 6px;
+}
+
+.set{
+  position: relative;
+  overflow: visible;
+}
+.Home{
+  display: inline-flex;
+  right: 10px;
 }

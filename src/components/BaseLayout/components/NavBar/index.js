@@ -20,49 +20,59 @@
 import React from "react";
 import { Icon } from "react-materialize";
 import { NavLink } from "react-router-dom";
-import "./index.css";
-
-import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import { isNull } from "util";
-import { access } from "fs";
-
+import "./index.css";
+const styles = {
+  root: {
+    flexGrow: 1,
+  },
+  flex: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+};
 //navigation bar top left corner
 const Navbar = props => (
-  <AppBar position="static" color="default">
+  <span className="set">
+  <AppBar position="static" color="default" display="flex">
     <Toolbar variant="dense">
       <Typography variant="title" color="inherit">
+      <span className="Home">
         <Button href="/products">HOME</Button>
-
+        </span>
         {props.authorized ? (
           <Button href="/inventory_items"> INVENTORY </Button>
         ) : null}
-
+      
+        <span className="Cart">
+          <IconButton 
+            href="/cart"
+            color="primary"
+            aria-label="Add to shopping cart"
+          >
+            <AddShoppingCartIcon />
+          </IconButton>
+        </span>
+        
+        <span className="Login">
         {props.logged ? (
-          <Button href="/logout">LOGOUT</Button>
+          <Button href="/logout" >LOGOUT</Button>
         ) : (
           <Button href="/login">LOGIN</Button>
         )}
-
-        
-        <span className="Cart">
-        <IconButton 
-          href="/cart"
-          color="primary"
-          aria-label="Add to shopping cart"
-          
-        >
-          <AddShoppingCartIcon />
-        </IconButton>
         </span>
       </Typography>
     </Toolbar>
   </AppBar>
+  </span>
 );
 
 export default Navbar;

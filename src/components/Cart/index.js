@@ -28,7 +28,6 @@ import axios from "axios";
 import Button from "@material-ui/core/Button";
 
 export default class ProItems extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = { value: "1" };
@@ -56,13 +55,11 @@ export default class ProItems extends React.Component {
     var access_token = localStorage.getItem("access_token");
 
     for (var i = 0; i < array_value.length; i++) {
-
-
       let axiosConfig = {
         headers: {
           "Access-Control-Allow-Origin": "*",
           Accept: "*/*",
-          "Authorization": "Bearer " + access_token
+          Authorization: "Bearer " + access_token
           //Authorization: "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
         }
       };
@@ -89,10 +86,8 @@ export default class ProItems extends React.Component {
         .catch(err => {
           console.log("AXIOS ERROR: ", err);
         });
-
-
     }
-    
+
     localStorage.removeItem("item");
 
     alert("Items checkout successfully ! ");
@@ -101,7 +96,7 @@ export default class ProItems extends React.Component {
   }
 
   remove(ID) {
-    var cart = localStorage.getItem("item")
+    var cart = localStorage.getItem("item");
 
     var array_value = JSON.parse(localStorage.getItem("item"));
 
@@ -169,35 +164,38 @@ export default class ProItems extends React.Component {
                         onChange={this.handleChange}
                       />
                     </label>
-                       <span className = "Update">       
-                    <Button
-                      onClick={() =>
-                        this.update(product.ID, product.stock, this.state.value)
-                      }
-                      variant="contained"
-                      color="primary"
-                    >
-                      Update
-                    </Button>
-                      </span>
-                      
-                      <span>
-                    <Button
-                      onClick={() => this.remove(product.ID)}
-                      variant="contained"
-                      color="secondary"
-                    >
-                    
-                      Remove
-                    </Button>
-                     </span>
+                    <span className="Update">
+                      <Button
+                        onClick={() =>
+                          this.update(
+                            product.ID,
+                            product.stock,
+                            this.state.value
+                          )
+                        }
+                        variant="contained"
+                        color="primary"
+                      >
+                        Update
+                      </Button>
+                    </span>
+
+                    <span>
+                      <Button
+                        onClick={() => this.remove(product.ID)}
+                        variant="contained"
+                        color="secondary"
+                      >
+                        Remove
+                      </Button>
+                    </span>
                   </form>
                 </div>
               </div>
             </div>
           );
         })}
-        <span className ="checkout">
+        <span className="checkout">
           <Button
             onClick={() => this.checkout()}
             variant="contained"

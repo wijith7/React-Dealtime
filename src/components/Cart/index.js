@@ -169,7 +169,7 @@ export default class ProItems extends React.Component {
                         onChange={this.handleChange}
                       />
                     </label>
-
+                       <span className = "Update">       
                     <Button
                       onClick={() =>
                         this.update(product.ID, product.stock, this.state.value)
@@ -179,20 +179,25 @@ export default class ProItems extends React.Component {
                     >
                       Update
                     </Button>
+                      </span>
+                      
+                      <span>
                     <Button
                       onClick={() => this.remove(product.ID)}
                       variant="contained"
                       color="secondary"
                     >
+                    
                       Remove
                     </Button>
+                     </span>
                   </form>
                 </div>
               </div>
             </div>
           );
         })}
-        <span styles={{ float: "right" }}>
+        <span className ="checkout">
           <Button
             onClick={() => this.checkout()}
             variant="contained"

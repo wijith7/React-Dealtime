@@ -31,3 +31,24 @@
   
   
 }
+.Update{
+  display: inline-block;           
+    margin: 10px 0;
+    padding-right:6px;
+}
+.checkout{
+  display: inline-flex;           
+    margin: 10px 0;
+    padding-left:870px;
+    
+
+}
+.Empty_headder{
+  display: flex;
+  justify-content:left;
+  align-items: left;
+  width: auto;
+  padding-top:10px;
+  padding-left: 30px;
+  
+}

@@ -50,8 +50,8 @@ const Navbar = props => (
         )}
 
         
-
-        <IconButton  
+        <span className="Cart">
+        <IconButton 
           href="/cart"
           color="primary"
           aria-label="Add to shopping cart"
@@ -59,6 +59,7 @@ const Navbar = props => (
         >
           <AddShoppingCartIcon />
         </IconButton>
+        </span>
       </Typography>
     </Toolbar>
   </AppBar>

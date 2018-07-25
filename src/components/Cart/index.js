@@ -34,6 +34,8 @@ export default class ProItems extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     console.log(this.state.value);
+
+    
   }
 
   handleChange(event) {
@@ -96,7 +98,7 @@ export default class ProItems extends React.Component {
   }
 
   remove(ID) {
-    var cart = localStorage.getItem("item");
+    var cart_items = JSON.parse(localStorage.getItem("item"));
 
     var array_value = JSON.parse(localStorage.getItem("item"));
 
@@ -109,6 +111,9 @@ export default class ProItems extends React.Component {
 
     localStorage.setItem("item", JSON.stringify(cartObj));
     window.location.reload();
+
+    
+    
   }
 
   update(ID, stock, value) {
@@ -196,6 +201,9 @@ export default class ProItems extends React.Component {
           );
         })}
         <span className="checkout">
+
+
+
           <Button
             onClick={() => this.checkout()}
             variant="contained"
@@ -203,6 +211,9 @@ export default class ProItems extends React.Component {
           >
             CheckOut
           </Button>
+
+
+
         </span>
       </div>
     );

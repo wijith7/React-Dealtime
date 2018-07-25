@@ -98,6 +98,7 @@ export default class ShowProduct extends React.Component {
     return (
       <div className="product1">
         {this.state.products.map(product => {
+          
           if (product.ID == ID_Number) {
             return (
               <div className="show-product1">
@@ -110,7 +111,7 @@ export default class ShowProduct extends React.Component {
                     />
                   </div>
 
-                  <div className="item-name11">
+                  <div className="item-name1">
                     <div className="product-info1">
                       <h3 id="product-name">{product.name}</h3>
                     </div>

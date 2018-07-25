@@ -26,53 +26,72 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import { withRouter } from 'react-router'
+import { Redirect } from "react-router-dom";
 import "./index.css";
 const styles = {
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   flex: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
     marginLeft: -12,
-    marginRight: 20,
-  },
+    marginRight: 20
+  }
 };
 //navigation bar top left corner
-const Navbar = props => (
-  <span className="set">
-  <AppBar position="static" color="default" display="flex">
-    <Toolbar variant="dense">
-      <Typography variant="title" color="inherit">
-      <span className="Home">
-        <Button href="/products">HOME</Button>
-        </span>
-        {props.authorized ? (
-          <Button href="/inventory_items"> INVENTORY </Button>
-        ) : null}
-      
-        <span className="Cart">
-          <IconButton 
-            href="/cart"
-            color="primary"
-            aria-label="Add to shopping cart"
-          >
-            <AddShoppingCartIcon />
-          </IconButton>
-        </span>
-        
-        <span className="Login">
-        {props.logged ? (
-          <Button href="/logout" >LOGOUT</Button>
-        ) : (
-          <Button href="/login">LOGIN</Button>
-        )}
-        </span>
-      </Typography>
-    </Toolbar>
-  </AppBar>
-  </span>
-);
+class Navbar extends React.Component {
+  constructor(pp) {
+    super(pp);
+    this.logout = this.logout.bind(this);
+  }
 
-export default Navbar;
+  logout(event) {
+    localStorage.clear();
+    this.props.changeLogged({logged: false})
+    this.props.history.push("/products")
+  }
+
+  render() {
+    const { authorized, logged } = this.props;
+    return (
+      <span className="set">
+        <AppBar position="static" color="default" display="flex">
+          <Toolbar variant="dense">
+            <Typography variant="title" color="inherit">
+              <span className="Home">
+                <Button href="/products">HOME</Button>
+              </span>
+
+              {authorized ? (
+                <Button href="/inventory_items"> INVENTORY </Button>
+              ) : null}
+
+              <span className="Cart">
+                <IconButton
+                  href="/cart"
+                  color="primary"
+                  aria-label="Add to shopping cart"
+                >
+                  <AddShoppingCartIcon />
+                </IconButton>
+              </span>
+
+              <span className="Login">
+                {logged ? (
+                  <Button onClick={this.logout}>LOGOUT</Button>
+                ) : (
+                  <Button href="/login">LOGIN</Button>
+                )}
+              </span>
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </span>
+    );
+  }
+}
+
+export default withRouter(Navbar);

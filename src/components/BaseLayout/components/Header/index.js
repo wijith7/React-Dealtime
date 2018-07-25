@@ -17,13 +17,35 @@
 */
 //Dependencies
 
-import React from 'react';
-import './index.css';
+import React from "react";
+import "./index.css";
+const classNames = ["first-header", "second-header", "third-header"];
 
-const Header = () => (
-  <div className="header">
-    <h1 id="header-title">DealTime</h1>
-  </div>
-)
 
-export default Header;
+export default class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      index: 0
+    };
+  }
+
+  incrementIndex = () => {
+    const newIndex = this.state.index + 1;
+    this.setState({ index: newIndex });
+  };
+
+  componentDidMount = () => {
+    setInterval(this.incrementIndex, 3000);
+  };
+
+  render() {
+    const index = this.state.index % classNames.length;
+    const className = "header " + classNames[index];
+    return (
+      <div className={className}>
+        <h1>DealTime</h1>
+      </div>
+    );
+  }
+}

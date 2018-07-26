@@ -23,16 +23,19 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./index.css";
 
+const BaseLayout = props => {
+  return (
+    <div>
+      <Navbar
+        changeLogged={props.changeLogged}
+        logged={props.logged}
+        authorized={props.authorized}
+      />
+      <Header />
+      <div className="content">{props.children}</div>
+      <Footer />
+    </div>
+  );
+};
 
-const BaseLayout = (props) => {
-    return (
-      <div>
-        <Navbar changeLogged={props.changeLogged} logged={props.logged} authorized={props.authorized} />
-        <Header />
-        <div className="content">{props.children}</div>
-        <Footer />
-      </div>
-    );
-  }
-
-  export default BaseLayout;
+export default BaseLayout;

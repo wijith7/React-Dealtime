@@ -46,8 +46,8 @@ class Navbar extends React.Component {
   }
 
   render() {
-    const {logged } = this.props;
-    const { authorized} = this.props;
+    const { authorized, logged } = this.props;
+    
     return (
       <span className="set">
         <AppBar position="static" color="default" display="flex">

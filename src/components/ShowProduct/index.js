@@ -23,12 +23,12 @@ import { getProducts } from "../Data";
 import "./index.css";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
+import swal from 'sweetalert';
 
 export default class ShowProduct extends React.Component {
   handleSubmit = event => {
-    event.preventDefault();
-    console.log(this.inputNode.value);
-    var inputval = this.inputNode.value;
+    
+    
   };
 
   constructor() {
@@ -44,11 +44,13 @@ export default class ShowProduct extends React.Component {
     this.setState({ value: event.target.value });
   }
   Add(ID, stock) {
-    window.location.reload();
+    
+   window.location.reload();
+    
     // Get access_token from localstorage
     var access_token = localStorage.getItem("access_token");
 
-    console.log(this.state.value);
+    //console.log(this.state.value);
 
     let axiosConfig = {
       headers: {
@@ -60,7 +62,9 @@ export default class ShowProduct extends React.Component {
         //Authorization: "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
       }
     };
-
+   
+    
+    //window.location.reload();
     // by this we send put request through the inventory_API for add Items for the store
 
     return axios
@@ -78,6 +82,8 @@ export default class ShowProduct extends React.Component {
       .catch(err => {
         console.log("AXIOS ERROR: ", err);
       });
+      
+      
   }
   componentDidMount() {
     //setState loading

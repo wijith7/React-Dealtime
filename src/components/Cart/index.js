@@ -26,6 +26,7 @@ import { NavLink } from "react-router-dom";
 import "./index.css";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
+import swal from 'sweetalert';
 
 export default class ProItems extends React.Component {
   constructor(props) {
@@ -83,15 +84,18 @@ export default class ProItems extends React.Component {
 
     localStorage.removeItem("item");
 
-    alert("Items checkout successfully ! ");
+    
+    // swal({
+    //   text: "Items checkout successfully !",
+    // });
 
     window.location.reload();
   }
 
   remove(ID) {
     var cart_items = JSON.parse(localStorage.getItem("item"));
-    //var array_value = JSON.parse(localStorage.getItem("item"));
-
+    var value = localStorage.getItem("item");
+    
     var cartObj = [];
     for (var i = 0; i < cart_items.length; i++) {
       if (ID != cart_items[i].ID) {
@@ -100,10 +104,13 @@ export default class ProItems extends React.Component {
     }
 
     localStorage.setItem("item", JSON.stringify(cartObj));
-    window.location.reload();
-    if(cart_items.length>0){
+    if(cart_items.length==1){
       localStorage.removeItem("item");
+
     }
+    //console.log("value",cart_items.length);
+    window.location.reload();
+    
   }
 
   update(ID, stock, value) {
@@ -111,9 +118,16 @@ export default class ProItems extends React.Component {
     //console.log(value);
 
     if (stock < value) {
-      alert("Please Enter less ammount of items");
+      swal({
+        text: "Please Enter less ammount of items",
+      });
+      
     } else {
       alert("Items update successfully ! ");
+
+      swal({
+        text: "Items update successfully !",
+      });
     }
 
     var array_value = JSON.parse(localStorage.getItem("item"));

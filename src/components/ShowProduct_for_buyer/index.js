@@ -21,6 +21,7 @@ import React, { Component } from "react";
 import { Icon } from "react-materialize";
 import { getProducts } from "../Data";
 import "./index1.css";
+import swal from 'sweetalert';
 
 export default class ShowProduct extends React.Component {
   handleSubmit = event => {
@@ -42,8 +43,9 @@ export default class ShowProduct extends React.Component {
     var access_token = localStorage.getItem("access_token");
 
     if(access_token==null){
-      alert("Please Login !!");
-     // window.location.href = "http://localhost:3000/login";
+
+      //alert("Please Login !!");
+      swal({title: "Please Login !!"});
       this.props.history.push("/login");
     }else{
 
@@ -62,7 +64,11 @@ export default class ShowProduct extends React.Component {
     if (cart != null) {
       for (var i = 0; i < array_value.length; i++) {
         if (orderJSON.ID == array_value[i].ID) {
-          alert("Item is allready in the Cart");
+
+          
+          swal({
+            text: "Item is allready in the Cart",
+          });
 
           return;
         }
@@ -80,7 +86,11 @@ export default class ShowProduct extends React.Component {
     }
     localStorage.setItem("item", JSON.stringify(cartObj));
 
-    alert("Item is add to the cart successfully");
+    
+    swal({
+      icon: "success",
+    });
+    
   }
   }
 

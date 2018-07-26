@@ -21,6 +21,7 @@ import { Redirect } from "react-router-dom";
 import "./index.css";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
+import swal from 'sweetalert';
 
 class Login extends Component {
   constructor(props) {
@@ -96,13 +97,18 @@ class Login extends Component {
           this.props.changeLogged({ logged: true });
           this.setState({ logged: true });
         } else {
-          alert("In correct Username or Password");
+          swal(
+             "Username or Password Incorrect !",
+          );
         }
       })
       .catch(err => {
         console.log("AXIOS ERROR: ", err);
 
-        alert("Username or Password Incorrect");
+        swal(
+          "Username or Password Incorrect !",
+        );
+
       });
       
 

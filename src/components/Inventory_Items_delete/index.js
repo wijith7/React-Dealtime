@@ -17,6 +17,7 @@
 */
 
 //Dependencies
+
 import React from 'react';
 import './index.css';
 
@@ -25,7 +26,7 @@ const Inventory_Items = () => (
     <div className="products-title">
       <h4>Inventory Items</h4>
     </div>
-  
+
   </div>
 );
 

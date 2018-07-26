@@ -93,7 +93,7 @@ class Login extends Component {
 
         //if user_name and passwors are correct go to the product page
         if (res.status === 200) {
-          this.props.changeLogged({ logged: true, authorized: true });
+          this.props.changeLogged({ logged: true });
           this.setState({ logged: true });
         } else {
           alert("In correct Username or Password");
@@ -104,6 +104,8 @@ class Login extends Component {
 
         alert("Username or Password Incorrect");
       });
+      
+
   }
   render() {
     if (this.state.logged) {
@@ -135,7 +137,7 @@ class Login extends Component {
             />
 
             <Button
-              type="submit"
+              type="onSubmit"
               className="button success"
               value="Login"
               onClick={this.login}
@@ -149,5 +151,6 @@ class Login extends Component {
       </div>
     );
   }
+  
 }
 export default Login;

@@ -39,7 +39,18 @@ class ShoppingApp extends React.Component {
   }
 
   changeLogged(logged) {
+
+    let access_token_available = localStorage.getItem("access_token");
+    var scope = JSON.parse(localStorage.getItem("scope"));
+
     this.setState(logged);
+    if (access_token_available != null && scope != null) {
+      this.setState({ logged: true });
+      if (scope.indexOf("sell") >= 0) {
+        this.setState({ authorized: true });
+      }
+    }
+
   }
 
   //localStorage.removeItem("access_token")

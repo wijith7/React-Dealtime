@@ -34,8 +34,6 @@ export default class ProItems extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     console.log(this.state.value);
-
-    
   }
 
   handleChange(event) {
@@ -43,20 +41,17 @@ export default class ProItems extends React.Component {
   }
 
   handleSubmit(event) {
-    //event.preventDefault();
+    event.preventDefault();
   }
 
   checkout() {
-    //var cart = localStorage.getItem("item");
-
     var array_value = JSON.parse(localStorage.getItem("item"));
-
-    //console.log(length);
 
     // Get access_token from localstorage
     var access_token = localStorage.getItem("access_token");
 
     for (var i = 0; i < array_value.length; i++) {
+      //-----------------------------------------------------------------------
       let axiosConfig = {
         headers: {
           "Access-Control-Allow-Origin": "*",
@@ -65,23 +60,19 @@ export default class ProItems extends React.Component {
           //Authorization: "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
         }
       };
-      console.log(
-        array_value[i].ID,
-        array_value[i].stock,
-        array_value[i].order
-      );
-      //console.log(array_value.length);
-      // by this we send put request through the inventory_API for add Items for the store
+      //------------------------------------------------------------------------
+
+      // by this we send put request to order API in port 8243 for add Items for the store
       axios
         .put(
           "https://localhost:8243/orderapi/1.0.0/order/" + array_value[i].ID,
           { stock: eval(array_value[i].stock) - eval(array_value[i].order) },
           axiosConfig
-        ) //FRONTEND_URL
+        )
 
         .then(function(res) {
-          console.log("RESPONSE RECEIVED: ", res);
-          console.log("RESPONSE data: ", res.data);
+          //console.log("RESPONSE RECEIVED: ", res);
+          //console.log("RESPONSE data: ", res.data);
           let products = res.data;
           return products;
         })
@@ -99,21 +90,20 @@ export default class ProItems extends React.Component {
 
   remove(ID) {
     var cart_items = JSON.parse(localStorage.getItem("item"));
-
-    var array_value = JSON.parse(localStorage.getItem("item"));
+    //var array_value = JSON.parse(localStorage.getItem("item"));
 
     var cartObj = [];
-    for (var i = 0; i < array_value.length; i++) {
-      if (ID != array_value[i].ID) {
-        cartObj.push(array_value[i]);
+    for (var i = 0; i < cart_items.length; i++) {
+      if (ID != cart_items[i].ID) {
+        cartObj.push(cart_items[i]);
       }
     }
 
     localStorage.setItem("item", JSON.stringify(cartObj));
     window.location.reload();
-
-    
-    
+    if(cart_items.length>0){
+      localStorage.removeItem("item");
+    }
   }
 
   update(ID, stock, value) {
@@ -201,9 +191,6 @@ export default class ProItems extends React.Component {
           );
         })}
         <span className="checkout">
-
-
-
           <Button
             onClick={() => this.checkout()}
             variant="contained"
@@ -211,9 +198,6 @@ export default class ProItems extends React.Component {
           >
             CheckOut
           </Button>
-
-
-
         </span>
       </div>
     );

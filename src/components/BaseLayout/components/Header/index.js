@@ -19,9 +19,8 @@
 
 import React from "react";
 import "./index.css";
+
 const classNames = ["first-header", "second-header", "third-header"];
-
-
 export default class Header extends React.Component {
   constructor(props) {
     super(props);

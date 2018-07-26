@@ -25,10 +25,12 @@ import 'typeface-roboto'
 export default class ProItems extends React.Component {
 
   constructor(){
+    
     super();
     this.state = {
       products: [],
       loading: false,
+     
     }
   }
     //this can be reuse
@@ -40,9 +42,11 @@ export default class ProItems extends React.Component {
     });
 
    getProducts().then((res = [])=>{
+     
       this.setState({
         products: res,
         loading: false,
+        
       })
     });
   }
@@ -50,8 +54,10 @@ export default class ProItems extends React.Component {
   render(){
 
     if ( this.state.loading) {
+      
       return (
         <div>Loading ...</div>
+        
       );
     }
 

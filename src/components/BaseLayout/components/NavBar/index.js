@@ -18,44 +18,36 @@
 
 // Dependencies
 import React from "react";
-import { Icon } from "react-materialize";
-import { NavLink } from "react-router-dom";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import { withRouter } from 'react-router'
+import { withRouter } from "react-router";
 import { Redirect } from "react-router-dom";
 import "./index.css";
-const styles = {
-  root: {
-    flexGrow: 1
-  },
-  flex: {
-    flexGrow: 1
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20
-  }
-};
+
 //navigation bar top left corner
 class Navbar extends React.Component {
-  constructor(pp) {
-    super(pp);
+  constructor(e) {
+    super(e);
     this.logout = this.logout.bind(this);
   }
 
   logout(event) {
     localStorage.clear();
-    this.props.changeLogged({logged: false})
-    this.props.history.push("/products")
+    this.props.changeLogged({ logged: false });
+    this.props.history.push("/products");
+    window.location.reload();
+
+    
   }
 
   render() {
-    const { authorized, logged } = this.props;
+    const {logged } = this.props;
+    const { authorized} = this.props;
     return (
       <span className="set">
         <AppBar position="static" color="default" display="flex">

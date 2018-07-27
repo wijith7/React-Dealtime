@@ -18,75 +18,67 @@
 
 //Dependencies
 
-import React from 'react';
-import { Icon } from 'react-materialize';
-import { Link } from 'react-router-dom';
-import { getProducts } from '../../DataInventory';
-
+import React from "react";
+import { Icon } from "react-materialize";
+import { Link } from "react-router-dom";
+import { getProducts } from "../../Inventory_Data";
 
 export default class ProItems extends React.Component {
-
   constructor() {
     super();
     this.state = {
       products: [],
-      loading: false,
-    }
+      loading: false
+    };
   }
-  //This can be reuse
-
-  //we write this code bcz initialy we have to lode the items from the backend
 
   componentDidMount() {
     //setState loading
     this.setState({
-      loading: true,
+      loading: true
     });
 
     getProducts().then((res = []) => {
       this.setState({
         products: res,
-        loading: false,
-      })
+        loading: false
+      });
     });
   }
 
   render() {
-
     if (this.state.loading) {
-      return (
-        <div>Loading ...</div>
-      );
+      return <div>Loading ...</div>;
     }
 
     return (
+      <div>
+        {this.state.products.map(product => {
+          return (
+            <div className="items">
+              <div className="product-img">
+                <img alt={product.name} src={product.img} />
+              </div>
 
-      <div>{this.state.products.map((product) => {
-        return (
+              <div className="product-details">
+                <h4 id="product-description">Product ID :{product.ID}</h4>
+                <h1 id="product-name">{product.name}</h1>
+                <h4 id="product-description">{product.description}</h4>
+                <h4 id="product-description">
+                  Items in stock :{product.stock}
+                </h4>
+              </div>
 
-          <div className="items">
-            <div className="product-img">
-              <img alt={product.name} src={product.img} />
+              <div className="price-add">
+                <h5 id="product-price">${product.price}</h5>
+
+                <Link to={`/showproducts/${product.ID}`}>
+                  <i class="small material-icons icon-blue">add_circle</i>
+                </Link>
+              </div>
             </div>
-
-            <div className="product-details">
-              <h4 id="product-description">Product ID :{product.ID}</h4>
-              <h1 id="product-name">{product.name}</h1>
-              <h4 id="product-description">{product.description}</h4>
-              <h4 id="product-description">Items in stock :{product.stock}</h4>
-            </div>
-
-            <div className="price-add">
-              <h5 id="product-price">${product.price}</h5>
-
-              <Link to={`/showproducts/${product.ID}`}>
-                <i class="small material-icons icon-blue">add_circle</i>
-              </Link>
-
-            </div>
-          </div>
-        )
-      })}
+          );
+        })}
       </div>
     );
   }

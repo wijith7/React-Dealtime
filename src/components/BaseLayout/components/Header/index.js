@@ -25,6 +25,7 @@ export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      //this index use for change the header background
       index: 0
     };
   }

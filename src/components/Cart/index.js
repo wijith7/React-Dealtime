@@ -26,7 +26,8 @@ import { NavLink } from "react-router-dom";
 import "./index.css";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
-import swal from 'sweetalert';
+import swal from "sweetalert";
+import { set_headder } from '../Headder';
 
 export default class ProItems extends React.Component {
   constructor(props) {
@@ -34,7 +35,6 @@ export default class ProItems extends React.Component {
     this.state = { value: "1" };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    console.log(this.state.value);
   }
 
   handleChange(event) {
@@ -45,35 +45,42 @@ export default class ProItems extends React.Component {
     event.preventDefault();
   }
 
+  //iterate the items that in the item local storage and call order api
+  //then checkout  items in backend in memory map
+
   checkout() {
-    var array_value = JSON.parse(localStorage.getItem("item"));
+    // Get cart items from localstorage
+    var items_array = JSON.parse(localStorage.getItem("item"));
 
     // Get access_token from localstorage
     var access_token = localStorage.getItem("access_token");
 
-    for (var i = 0; i < array_value.length; i++) {
+    //iterate items in localstorage
+    for (var i = 0; i < items_array.length; i++) {
+
+      //this can be write as separate globle function
       //-----------------------------------------------------------------------
-      let axiosConfig = {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          Accept: "*/*",
-          Authorization: "Bearer " + access_token
-          //Authorization: "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
-        }
-      };
+      
+
+      // let axiosConfig = {
+      //   headers: {
+      //     "Access-Control-Allow-Origin": "*",
+      //     Accept: "*/*",
+      //     Authorization: "Bearer " + access_token
+      //     //Authorization: "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
+      //   }
+      // };
       //------------------------------------------------------------------------
 
       // by this we send put request to order API in port 8243 for add Items for the store
       axios
         .put(
-          "https://localhost:8243/orderapi/1.0.0/order/" + array_value[i].ID,
-          { stock: eval(array_value[i].stock) - eval(array_value[i].order) },
-          axiosConfig
+          "https://localhost:8243/orderapi/1.0.0/order/" + items_array[i].ID,
+          { stock: eval(items_array[i].stock) - eval(items_array[i].order) },
+          set_headder()
         )
 
         .then(function(res) {
-          //console.log("RESPONSE RECEIVED: ", res);
-          //console.log("RESPONSE data: ", res.data);
           let products = res.data;
           return products;
         })
@@ -84,18 +91,14 @@ export default class ProItems extends React.Component {
 
     localStorage.removeItem("item");
 
-    
-    // swal({
-    //   text: "Items checkout successfully !",
-    // });
-
     window.location.reload();
   }
-
+  //remove button function
   remove(ID) {
     var cart_items = JSON.parse(localStorage.getItem("item"));
+    //value is a string
     var value = localStorage.getItem("item");
-    
+    // by this we remove the item that belong to ID
     var cartObj = [];
     for (var i = 0; i < cart_items.length; i++) {
       if (ID != cart_items[i].ID) {
@@ -104,41 +107,35 @@ export default class ProItems extends React.Component {
     }
 
     localStorage.setItem("item", JSON.stringify(cartObj));
-    if(cart_items.length==1){
+    //if caet items are empty this removes the item array
+    //this helps to get empty cart message
+    if (cart_items.length == 1) {
       localStorage.removeItem("item");
-
     }
-    //console.log("value",cart_items.length);
+
     window.location.reload();
-    
   }
-
+  //this function use to update orders quntity
   update(ID, stock, value) {
-    //console.log(ID);
-    //console.log(value);
-
     if (stock < value) {
       swal({
-        text: "Please Enter less ammount of items",
+        text: "Please Enter less ammount of items"
       });
-      
     } else {
-      alert("Items update successfully ! ");
-
       swal({
-        text: "Items update successfully !",
+        text: "Items update successfully !"
       });
     }
+    //this pass update order qutity to array rewrite it
+    var items_array = JSON.parse(localStorage.getItem("item"));
 
-    var array_value = JSON.parse(localStorage.getItem("item"));
-
-    for (var i = 0; i < array_value.length; i++) {
-      if (ID == array_value[i].ID) {
-        array_value[i].order = value;
+    for (var i = 0; i < items_array.length; i++) {
+      if (ID == items_array[i].ID) {
+        items_array[i].order = value;
         break;
       }
     }
-    localStorage.setItem("item", JSON.stringify(array_value));
+    localStorage.setItem("item", JSON.stringify(items_array));
   }
 
   render() {

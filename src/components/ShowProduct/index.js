@@ -24,7 +24,7 @@ import "./index.css";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
 import swal from 'sweetalert';
-
+import { set_headder } from '../Headder';
 export default class ShowProduct extends React.Component {
   handleSubmit = event => {
     
@@ -52,16 +52,16 @@ export default class ShowProduct extends React.Component {
 
     //console.log(this.state.value);
 
-    let axiosConfig = {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        Accept: "*/*",
+    // let axiosConfig = {
+    //   headers: {
+    //     "Access-Control-Allow-Origin": "*",
+    //     Accept: "*/*",
 
-        Authorization: "Bearer " + access_token
+    //     Authorization: "Bearer " + access_token
 
-        //Authorization: "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
-      }
-    };
+    //     //Authorization: "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
+    //   }
+    // };
    
     
     //window.location.reload();
@@ -71,7 +71,7 @@ export default class ShowProduct extends React.Component {
       .put(
         "https://localhost:8243/inventoryapi/1.0.0/order/" + ID,
         { stock: eval(this.state.value) + eval(stock) },
-        axiosConfig
+        set_headder()
       ) //FRONTEND_URL
       .then(function(res) {
         console.log("RESPONSE RECEIVED: ", res);

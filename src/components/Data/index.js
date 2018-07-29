@@ -16,63 +16,22 @@
 * under the License.
 */
 
+// This is the js that we call data from the backend item API
 
-
-
-// This is the js that we call data from the backend from item API
-
-
-import axios from 'axios';
-import { set_headder } from '../Headder';
+import axios from "axios";
+import { set_headder } from "../Headder";
 
 export function getProducts() {
+  return axios
+    .get("https://localhost:8243/itemapi/1.0.0/order/all", set_headder()) //FRONTEND_URL
 
-  //retrive access token that store in the localStorage
-  // var access_token = localStorage.getItem('access_token');
-
-  // //This can be compose as a reuseble component look for that
-
-  // let axiosConfig = {
-  //   headers: {
-
-  //     "Access-Control-Allow-Origin": "*",
-  //     "Accept": "*/*",
-
-  //     "Authorization": "Bearer " + access_token
-  //     //"Authorization": "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
-
-  //     //I Have to add credential convertion to BEARER
-  //     // Chenge this after complete the codingssssss
-
-
-  //   }
-  // };
-  //.......................................
-
-  //This is requesting items from Item_Api
-  //all means it retrive all the items and list them on the page
-
-  return axios.get("https://localhost:8243/itemapi/1.0.0/order/all",  set_headder()) //FRONTEND_URL
-
-    .then(function (res) {
-      console.log("RESPONSE RECEIVED: ", res);
-      console.log("RESPONSE data: ", res.data);
+    .then(function(res) {
+     // console.log("RESPONSE RECEIVED: ", res);
+     // console.log("RESPONSE data: ", res.data);
       let products = res.data;
-      return (products);
-
-    }).catch((err) => {
+      return products;
+    })
+    .catch(err => {
       console.log("AXIOS ERROR: ", err);
-
     });
 }
-
-
-
-
-
-
-
-
-
-
-

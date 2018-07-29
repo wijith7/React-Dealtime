@@ -72,7 +72,6 @@
     "url": "https://github.com/wijith7/React-Dealtime/issues"
   },
   "homepage": "https://github.com/wijith7/React-Dealtime#readme",
-  "description": "",
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
@@ -113,5 +112,6 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  }
+  },
+  "description": ""
 }

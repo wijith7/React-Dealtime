@@ -16,47 +16,22 @@
 * under the License.
 */
 
+// This is the js that we export Headder
 
-
-
-// This is the js that we call data from the backend from item API
-
-
-import axios from 'axios';
-
+import axios from "axios";
 
 export function set_headder() {
-
   //retrive access token that store in the localStorage
-  var access_token = localStorage.getItem('access_token');
-
-  //This can be compose as a reuseble component look for that
+  var access_token = localStorage.getItem("access_token");
 
   let axiosConfig = {
     headers: {
-
       "Access-Control-Allow-Origin": "*",
-      "Accept": "*/*",
+      Accept: "*/*",
 
-      "Authorization": "Bearer " + access_token
+      Authorization: "Bearer " + access_token
       //"Authorization": "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
-
-      //I Have to add credential convertion to BEARER
-      // Chenge this after complete the codingssssss
-
-        
     }
   };
   return axiosConfig;
 }
-
-
-
-
-
-
-
-
-
-
-

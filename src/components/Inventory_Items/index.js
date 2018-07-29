@@ -17,18 +17,17 @@
 */
 
 //Dependencies
-import React from 'react';
-import MenItems from './Inventory_Items';
-import './index.css';
+import React from "react";
+import Items from "./Inventory_Items";
+import "./index.css";
 
-const MensProducts = () => (
+const Products = () => (
   <div className="products-lot">
     <div className="products-title">
       <h4>Inventory Items</h4>
     </div>
-    <MenItems />
+    <Items />
   </div>
 );
 
-
-export default MensProducts;
+export default Products;

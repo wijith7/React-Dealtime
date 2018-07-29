@@ -21,7 +21,10 @@ import { Redirect } from "react-router-dom";
 import "./index.css";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
-import swal from 'sweetalert';
+import swal from "sweetalert";
+//import "./web.config";
+import { Production_Keys } from './../../config.js';
+
 
 class Login extends Component {
   constructor(props) {
@@ -30,8 +33,10 @@ class Login extends Component {
       username: "",
       password: "",
       logged: false
+  
     };
     this.login = this.login.bind(this);
+    
   }
 
   login() {
@@ -56,12 +61,7 @@ class Login extends Component {
         Accept: "*/*",
         "X-Authorization":
           "Basic " +
-          new Buffer(
-            // 'Consumer Key' + ' : ' + ' Consumer Secret'
-            "ynlrljIfzNq3fSowtP2FybQ_xqsa" +
-              ":" +
-              "5mcIE9EzLd7VZfajHmZTWjHUhgMa"
-
+          new Buffer( Production_Keys //import from the config.js
             // Encode using base64
           ).toString("base64")
       }
@@ -76,7 +76,7 @@ class Login extends Component {
         axiosConfig
       ) //FRONTEND_URL
       .then(res => {
-        console.log("RESPONSE RECEIVED: ", res.data);
+       // console.log("RESPONSE RECEIVED: ", res.data);
 
         var splitSentence = res.data.scope.split(" ");
         var stringArray = new Array();
@@ -84,7 +84,7 @@ class Login extends Component {
           stringArray.push(splitSentence[i]);
         }
 
-        console.log("Split data:", stringArray);
+       // console.log("Split data:", stringArray);
 
         localStorage.setItem("scope", JSON.stringify(stringArray));
 
@@ -97,21 +97,14 @@ class Login extends Component {
           this.props.changeLogged({ logged: true });
           this.setState({ logged: true });
         } else {
-          swal(
-             "Username or Password Incorrect !",
-          );
+          swal("Username or Password Incorrect !");
         }
       })
       .catch(err => {
         console.log("AXIOS ERROR: ", err);
 
-        swal(
-          "Username or Password Incorrect !",
-        );
-
+        swal("Username or Password Incorrect !");
       });
-      
-
   }
   render() {
     if (this.state.logged) {
@@ -157,6 +150,5 @@ class Login extends Component {
       </div>
     );
   }
-  
 }
 export default Login;

@@ -21,13 +21,13 @@ import React from "react";
 import find from "lodash/find";
 import { Icon } from "react-materialize";
 import { Link } from "react-router-dom";
-import { getProducts } from "../DataInventory";
+
 import { NavLink } from "react-router-dom";
 import "./index.css";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
 import swal from "sweetalert";
-import { set_headder } from '../Headder';
+import { set_headder } from "../Headder";
 
 export default class ProItems extends React.Component {
   constructor(props) {
@@ -57,21 +57,6 @@ export default class ProItems extends React.Component {
 
     //iterate items in localstorage
     for (var i = 0; i < items_array.length; i++) {
-
-      //this can be write as separate globle function
-      //-----------------------------------------------------------------------
-      
-
-      // let axiosConfig = {
-      //   headers: {
-      //     "Access-Control-Allow-Origin": "*",
-      //     Accept: "*/*",
-      //     Authorization: "Bearer " + access_token
-      //     //Authorization: "Bearer 12ee492a-e7d1-3fa5-937e-2970b5225adc"
-      //   }
-      // };
-      //------------------------------------------------------------------------
-
       // by this we send put request to order API in port 8243 for add Items for the store
       axios
         .put(
@@ -107,7 +92,7 @@ export default class ProItems extends React.Component {
     }
 
     localStorage.setItem("item", JSON.stringify(cartObj));
-    //if caet items are empty this removes the item array
+    //if cart items are empty this removes the item array
     //this helps to get empty cart message
     if (cart_items.length == 1) {
       localStorage.removeItem("item");
@@ -140,7 +125,7 @@ export default class ProItems extends React.Component {
 
   render() {
     var cart_items = JSON.parse(localStorage.getItem("item"));
-
+   
     if (cart_items == null) {
       return (
         <div className="Empty_headder">

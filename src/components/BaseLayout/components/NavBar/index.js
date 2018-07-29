@@ -18,7 +18,6 @@
 
 // Dependencies
 import React from "react";
-
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -29,7 +28,7 @@ import { withRouter } from "react-router";
 import { Redirect } from "react-router-dom";
 import "./index.css";
 
-//navigation bar top left corner
+//navigation bar 
 class Navbar extends React.Component {
   constructor(e) {
     super(e);
@@ -41,13 +40,11 @@ class Navbar extends React.Component {
     this.props.changeLogged({ logged: false });
     this.props.history.push("/products");
     window.location.reload();
-
-    
   }
 
   render() {
     const { authorized, logged } = this.props;
-    
+
     return (
       <span className="set">
         <AppBar position="static" color="default" display="flex">

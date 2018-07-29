@@ -34,11 +34,13 @@ export default class ProItems extends React.Component {
     }
   }
     //this can be reuse
-
+    
    componentDidMount(){
     //setState loading
     this.setState({
       loading: true,
+      
+
     });
 
    getProducts().then((res = [])=>{

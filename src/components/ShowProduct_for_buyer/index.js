@@ -15,18 +15,18 @@
 * specific language governing permissions and limitations
 * under the License.
 */
+/*jshint -W065 */
 
 //Dependencies
-import React, { Component } from "react";
-import { Icon } from "react-materialize";
+import React from "react";
 import { getProducts } from "../Data";
 import "./index1.css";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 
 export default class ShowProduct extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.inputNode.value);
+    // console.log(this.inputNode.value);
   };
 
   constructor() {
@@ -34,7 +34,6 @@ export default class ShowProduct extends React.Component {
     this.state = {
       products: [],
       loading: false
-     
     };
   }
 
@@ -42,56 +41,49 @@ export default class ShowProduct extends React.Component {
   pass_cart(product) {
     var access_token = localStorage.getItem("access_token");
 
-    if(access_token==null){
-
+    if (access_token == null) {
       //alert("Please Login !!");
-      swal({title: "Please Login !!"});
+      swal({ title: "Please Login !!" });
       this.props.history.push("/login");
-    }else{
+    } else {
+      var orderJSON = {
+        ID: product.ID,
+        name: product.name,
+        price: product.price,
+        stock: product.stock,
+        order: 1
+      };
 
-    var orderJSON = {
-      ID: product.ID,
-      name: product.name,
-      price: product.price,
-      stock: product.stock,
-      order: 1
-    };
+      var cart = localStorage.getItem("item");
 
-    var cart = localStorage.getItem("item");
+      var array_value = JSON.parse(localStorage.getItem("item"));
 
-    var array_value = JSON.parse(localStorage.getItem("item"));
+      if (cart != null) {
+        for (var i = 0; i < array_value.length; i++) {
+          if (orderJSON.ID === array_value[i].ID) {
+            swal({
+              text: "Item is allready in the Cart"
+            });
 
-    if (cart != null) {
-      for (var i = 0; i < array_value.length; i++) {
-        if (orderJSON.ID == array_value[i].ID) {
-
-          
-          swal({
-            text: "Item is allready in the Cart",
-          });
-
-          return;
+            return;
+          }
         }
       }
+
+      var cartObj = [];
+
+      if (cart == null) {
+        cartObj.push(orderJSON);
+      } else {
+        cartObj = JSON.parse(cart);
+        cartObj.push(orderJSON);
+      }
+      localStorage.setItem("item", JSON.stringify(cartObj));
+
+      swal({
+        icon: "success"
+      });
     }
-    
-
-    var cartObj = [];
-
-    if (cart == null) {
-      cartObj.push(orderJSON);
-    } else {
-      cartObj = JSON.parse(cart);
-      cartObj.push(orderJSON);
-    }
-    localStorage.setItem("item", JSON.stringify(cartObj));
-
-    
-    swal({
-      icon: "success",
-    });
-    
-  }
   }
 
   componentDidMount() {
@@ -104,7 +96,7 @@ export default class ShowProduct extends React.Component {
 
   render() {
     //get ID from the url
-    const ID_Number = parseInt(this.props.match.params.ID);
+    var ID_Number = Number(this.props.match.params.ID);
     if (this.state.loading) {
       return <div>Loading ...</div>;
     }
@@ -112,7 +104,7 @@ export default class ShowProduct extends React.Component {
     return (
       <div>
         {this.state.products.map(product => {
-          if (product.ID == ID_Number) {
+          if (product.ID === ID_Number) {
             return (
               <div className="show-product">
                 <div className="item-wrapper">
@@ -135,7 +127,7 @@ export default class ShowProduct extends React.Component {
 
                       <div>
                         <button onClick={() => this.pass_cart(product)}>
-                          <i class="medium material-icons icon-blue">
+                          <i className="medium material-icons icon-blue">
                             <p id="product-description">Add To Cart</p>add_shopping_cart
                           </i>
                         </button>

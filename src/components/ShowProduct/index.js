@@ -15,15 +15,15 @@
 * specific language governing permissions and limitations
 * under the License.
 */
+/* eslint no-eval: 0 */
+/*jshint -W065 */
 
 //Dependencies
-import React, { Component } from "react";
-import { Icon } from "react-materialize";
+import React from "react";
 import { getProducts } from "../Data";
 import "./index.css";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
-import swal from "sweetalert";
 import { set_headder } from "../Headder";
 export default class ShowProduct extends React.Component {
   constructor() {
@@ -33,7 +33,7 @@ export default class ShowProduct extends React.Component {
       loading: false
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+   
   }
   handleChange(event) {
     this.setState({ value: event.target.value });
@@ -41,8 +41,7 @@ export default class ShowProduct extends React.Component {
   Add(ID, stock) {
     window.location.reload();
 
-    // Get access_token from localstorage
-    var access_token = localStorage.getItem("access_token");
+    
 
     // by this we send put request through the inventory_API for add Items for the store
 
@@ -72,7 +71,8 @@ export default class ShowProduct extends React.Component {
 
   render() {
     //get ID from the url add show the pertiquler product
-    const ID_Number = parseInt(this.props.match.params.ID);
+    
+    var ID_Number = Number(this.props.match.params.ID);
 
     if (this.state.loading) {
       return <div>Loading ...</div>;
@@ -81,7 +81,7 @@ export default class ShowProduct extends React.Component {
     return (
       <div className="product1">
         {this.state.products.map(product => {
-          if (product.ID == ID_Number) {
+          if (product.ID === ID_Number) {
             return (
               <div className="show-product1">
                 <div className="item-wrapper1">

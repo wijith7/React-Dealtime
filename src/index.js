@@ -26,7 +26,7 @@ import Products from "./components/Products";
 import Login from "./components/Login";
 import ShowProduct from "./components/ShowProduct";
 import Inventory from "./components/Inventory";
-import Inventory_Items from "./components/Inventory_Items";
+import InventoryItems from "./components/Inventory_Items";
 import show_products_B from "./components/ShowProduct_for_buyer";
 import registerServiceWorker from "./registerServiceWorker";
 
@@ -89,7 +89,7 @@ class ShoppingApp extends React.Component {
 
             <Route
               path="/inventory_items"
-              render={() => <Inventory_Items authorized={authorized} />}
+              render={() => <InventoryItems authorized={authorized} />}
             />
 
             <Route path="/products" component={Products} />

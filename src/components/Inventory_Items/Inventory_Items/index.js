@@ -19,7 +19,6 @@
 //Dependencies
 
 import React from "react";
-import { Icon } from "react-materialize";
 import { Link } from "react-router-dom";
 import { getProducts } from "../../Inventory_Data";
 

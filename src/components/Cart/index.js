@@ -15,14 +15,10 @@
 * specific language governing permissions and limitations
 * under the License.
 */
+/* eslint no-eval: 0 */
 
 //Dependencies
 import React from "react";
-import find from "lodash/find";
-import { Icon } from "react-materialize";
-import { Link } from "react-router-dom";
-
-import { NavLink } from "react-router-dom";
 import "./index.css";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
@@ -52,9 +48,7 @@ export default class ProItems extends React.Component {
     // Get cart items from localstorage
     var items_array = JSON.parse(localStorage.getItem("item"));
 
-    // Get access_token from localstorage
-    var access_token = localStorage.getItem("access_token");
-
+    
     //iterate items in localstorage
     for (var i = 0; i < items_array.length; i++) {
       // by this we send put request to order API in port 8243 for add Items for the store
@@ -81,12 +75,11 @@ export default class ProItems extends React.Component {
   //remove button function
   remove(ID) {
     var cart_items = JSON.parse(localStorage.getItem("item"));
-    //value is a string
-    var value = localStorage.getItem("item");
+   
     // by this we remove the item that belong to ID
     var cartObj = [];
     for (var i = 0; i < cart_items.length; i++) {
-      if (ID != cart_items[i].ID) {
+      if (ID !== cart_items[i].ID) {
         cartObj.push(cart_items[i]);
       }
     }
@@ -94,7 +87,7 @@ export default class ProItems extends React.Component {
     localStorage.setItem("item", JSON.stringify(cartObj));
     //if cart items are empty this removes the item array
     //this helps to get empty cart message
-    if (cart_items.length == 1) {
+    if (cart_items.length === 1) {
       localStorage.removeItem("item");
     }
 
@@ -115,7 +108,7 @@ export default class ProItems extends React.Component {
     var items_array = JSON.parse(localStorage.getItem("item"));
 
     for (var i = 0; i < items_array.length; i++) {
-      if (ID == items_array[i].ID) {
+      if (ID === items_array[i].ID) {
         items_array[i].order = value;
         break;
       }
@@ -125,7 +118,7 @@ export default class ProItems extends React.Component {
 
   render() {
     var cart_items = JSON.parse(localStorage.getItem("item"));
-   
+
     if (cart_items == null) {
       return (
         <div className="Empty_headder">

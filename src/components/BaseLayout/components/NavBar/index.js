@@ -25,7 +25,6 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { withRouter } from "react-router";
-import { Redirect } from "react-router-dom";
 import "./index.css";
 
 //navigation bar 

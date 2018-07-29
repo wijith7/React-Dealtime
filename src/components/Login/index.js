@@ -79,7 +79,7 @@ class Login extends Component {
        // console.log("RESPONSE RECEIVED: ", res.data);
 
         var splitSentence = res.data.scope.split(" ");
-        var stringArray = new Array();
+        var stringArray=[];
         for (var i = 0; i < splitSentence.length; i++) {
           stringArray.push(splitSentence[i]);
         }

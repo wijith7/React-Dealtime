@@ -17,80 +17,61 @@
 */
 
 //Dependencies
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { getProducts } from '../../Data';
-import 'typeface-roboto'
+import React from "react";
+import { Link } from "react-router-dom";
+import { getProducts } from "../../Data";
+import "typeface-roboto";
 
 export default class ProItems extends React.Component {
-
-  constructor(){
-    
+  constructor() {
     super();
     this.state = {
       products: [],
-      loading: false,
-     
-    }
+      loading: false
+    };
   }
-    //this can be reuse
-    
-   componentDidMount(){
+  //this can be reuse
+
+  componentDidMount() {
     //setState loading
     this.setState({
-      loading: true,
-      
-
+      loading: true
     });
 
-   getProducts().then((res = [])=>{
-     
+    getProducts().then((res = []) => {
       this.setState({
         products: res,
-        loading: false,
-        
-      })
+        loading: false
+      });
     });
   }
 
-  render(){
-
-    if ( this.state.loading) {
-      
-      return (
-        <div>Loading ...</div>
-        
-      );
+  render() {
+    if (this.state.loading) {
+      return <div>Loading ...</div>;
     }
 
-    return(
+    return (
+      <div>
+        {this.state.products.map(product => {
+          return (
+            <div key={product.ID} className="items">
+              <Link to={`/show_products_for_buyers/${product.ID}`}>
+                <div className="product-img">
+                  <img alt={product.name} src={product.img} />
+                </div>
+                <div className="product-details">
+                  <h1 id="product-name">{product.name}</h1>
+                  <h4 id="product-description">{product.description}</h4>
+                </div>
+              </Link>
 
-      <div>{this.state.products.map((product)=>{
-
-        return(
-          <div className="items">
-
-          <Link to={`/show_products_for_buyers/${product.ID}`}>
-
-          <div className="product-img">
-          <img alt={product.name} src={product.img} />
-          </div>
-          <div className="product-details">
-          <h1 id="product-name">{product.name}</h1>
-          <h4 id="product-description">{product.description}</h4>
-          </div>
-
-          </Link>
-
-          <div className="price-add">
-
-          <h5 id="product-price">${product.price}</h5>
-
-          </div>
-          </div>
-
-        )
-      })}
+              <div className="price-add">
+                <h5 id="product-price">${product.price}</h5>
+              </div>
+            </div>
+          );
+        })}
       </div>
     );
   }

@@ -23,7 +23,7 @@
 export function set_headder() {
   //retrive access token that store in the localStorage
   var access_token = localStorage.getItem("access_token");
-
+  //var access_token = document.cookie;
   let axiosConfig = {
     headers: {
       "Access-Control-Allow-Origin": "*",

@@ -18,7 +18,7 @@
 
 // Dependencies
 import React from "react";
-import Navbar from "./components/NavBar";
+import Navi from "./components/Navi";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./index.css";
@@ -26,7 +26,7 @@ import "./index.css";
 const BaseLayout = props => {
   return (
     <div>
-      <Navbar
+      <Navi
         changeLogged={props.changeLogged}
         logged={props.logged}
         authorized={props.authorized}

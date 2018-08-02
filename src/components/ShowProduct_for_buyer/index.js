@@ -39,7 +39,8 @@ export default class ShowProduct extends React.Component {
 
   //this is use for pass product details to cart
   pass_cart(product) {
-    var access_token = localStorage.getItem("access_token");
+   // var access_token = localStorage.getItem("access_token");
+   var access_token = document.cookie;
 
     if (access_token == null) {
       //alert("Please Login !!");

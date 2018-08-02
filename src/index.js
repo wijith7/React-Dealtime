@@ -15,6 +15,8 @@
 * specific language governing permissions and limitations
 * under the License.
 */
+//HashRouter
+//BrowserRouter
 
 import React from "react";
 import ReactDOM from "react-dom";
@@ -39,7 +41,6 @@ class ShoppingApp extends React.Component {
   }
 
   changeLogged(logged) {
-
     let access_token_available = localStorage.getItem("access_token");
     var scope = JSON.parse(localStorage.getItem("scope"));
 
@@ -50,12 +51,9 @@ class ShoppingApp extends React.Component {
         this.setState({ authorized: true });
       }
     }
-
   }
 
-  //localStorage.removeItem("access_token")
-  //   Check whether access_token_available if so
-
+  
   componentDidMount() {
     let access_token_available = localStorage.getItem("access_token");
     var scope = JSON.parse(localStorage.getItem("scope"));
@@ -74,7 +72,11 @@ class ShoppingApp extends React.Component {
 
     return (
       <BrowserRouter>
-        <BaseLayout changeLogged={this.changeLogged} logged={logged} authorized={authorized}>
+        <BaseLayout
+          changeLogged={this.changeLogged}
+          logged={logged}
+          authorized={authorized}
+        >
           <Switch>
             <Route
               path="/show_products_for_buyers/:ID"
@@ -108,4 +110,4 @@ ReactDOM.render(
 
   document.getElementById("root")
 );
-registerServiceWorker();
+//registerServiceWorker();

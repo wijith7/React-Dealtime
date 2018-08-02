@@ -27,8 +27,9 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { withRouter } from "react-router";
 import "./index.css";
 
-//navigation bar 
-class Navbar extends React.Component {
+//Navigation bar 
+
+class Navi extends React.Component {
   constructor(e) {
     super(e);
     this.logout = this.logout.bind(this);
@@ -82,4 +83,4 @@ class Navbar extends React.Component {
   }
 }
 
-export default withRouter(Navbar);
+export default withRouter(Navi);

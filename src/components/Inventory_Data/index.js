@@ -19,7 +19,7 @@
 // This is the js that we call data from InventoryAPI
 
 import axios from "axios";
-import { set_headder } from "../Headder";
+import { set_headder } from "../Request_Headder";
 export function getProducts() {
   // this Request data for the InventoryAPI
 

@@ -121,7 +121,7 @@ class Login extends Component {
   }
   render() {
     if (this.state.logged) {
-      return <Redirect to="/products" />;
+      return <Redirect to="/" />;
     }
     return (
       <div className="login_place">

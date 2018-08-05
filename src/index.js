@@ -29,7 +29,7 @@ import Login from "./components/Login";
 import ShowProduct from "./components/ShowProduct";
 import Inventory from "./components/Inventory";
 import InventoryItems from "./components/Inventory_Items";
-import show_products_B from "./components/ShowProduct_for_buyer";
+import show_products_B from "./components/ShowProduct_for_buyer/ShowProducts";
 import registerServiceWorker from "./registerServiceWorker";
 
 class ShoppingApp extends React.Component {
@@ -53,7 +53,6 @@ class ShoppingApp extends React.Component {
     }
   }
 
-  
   componentDidMount() {
     let access_token_available = localStorage.getItem("access_token");
     var scope = JSON.parse(localStorage.getItem("scope"));
@@ -94,10 +93,10 @@ class ShoppingApp extends React.Component {
               render={() => <InventoryItems authorized={authorized} />}
             />
 
-            <Route path="/products" component={Products} />
             <Route exact path="/showproducts/:ID" component={ShowProduct} />
             <Route path="/cart" component={Cart} />
             <Route path="/inventory" component={Inventory} />
+            <Route path="/" component={Products} />
           </Switch>
         </BaseLayout>
       </BrowserRouter>

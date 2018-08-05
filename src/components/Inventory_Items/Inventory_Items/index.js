@@ -72,7 +72,7 @@ export default class ProItems extends React.Component {
                 <h5 id="product-price">${product.price}</h5>
 
                 <Link to={`/showproducts/${product.ID}`}>
-                  <i class="small material-icons icon-blue">add_circle</i>
+                  <i class="material-icons icon-blue">ADD ITEM</i>
                 </Link>
               </div>
             </div>

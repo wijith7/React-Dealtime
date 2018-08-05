@@ -24,7 +24,9 @@ import { getProducts } from "../Data";
 import "./index.css";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
-import { set_headder } from "../Headder";
+import { set_headder } from "../Request_Headder";
+import ReactDOM from 'react-dom';
+import swal from "sweetalert";
 export default class ShowProduct extends React.Component {
   constructor() {
     super();
@@ -39,10 +41,16 @@ export default class ShowProduct extends React.Component {
     this.setState({ value: event.target.value });
   }
   Add(ID, stock) {
-    window.location.reload();
+   
+    console.log("value",this.state.value );
 
+      if(this.state.value === undefined){
+    swal({
+      text: "Please enter a valid number"
+    });
     
-
+  }else{
+    window.location.reload();
     // by this we send put request through the inventory_API for add Items for the store
 
     return axios
@@ -60,6 +68,7 @@ export default class ShowProduct extends React.Component {
       .catch(err => {
         console.log("AXIOS ERROR: ", err);
       });
+    }
   }
   componentDidMount() {
     //setState loading

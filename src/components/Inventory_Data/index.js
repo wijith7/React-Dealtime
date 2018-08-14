@@ -24,10 +24,8 @@ export function getProducts() {
   // this Request data for the InventoryAPI
 
   return axios
-    .get("https://localhost:8243/inventoryapi/1.0.0/order/all", set_headder()) 
+    .get("https://localhost:8243/inventoryapi/1.0.0/order/all", set_headder())
     .then(function(res) {
-      //console.log("RESPONSE RECEIVED: ", res);
-      //console.log("RESPONSE data: ", res.data);
       let products = res.data;
       return products;
     })

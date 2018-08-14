@@ -25,6 +25,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Cart from "./components/Cart";
 import BaseLayout from "./components/BaseLayout";
 import Products from "./components/Products";
+import SetupPage from "./components/SetupPage";
 import Login from "./components/Login";
 import ShowProduct from "./components/ShowProduct";
 import Inventory from "./components/Inventory";
@@ -77,10 +78,7 @@ class ShoppingApp extends React.Component {
           authorized={authorized}
         >
           <Switch>
-            <Route
-              path="/show_products_for_buyers/:ID"
-              component={show_products_B}
-            />
+            <Route path="/showproduct/:ID" component={show_products_B} />
             <Route
               path="/login"
               render={() => (
@@ -93,10 +91,16 @@ class ShoppingApp extends React.Component {
               render={() => <InventoryItems authorized={authorized} />}
             />
 
-            <Route exact path="/showproducts/:ID" component={ShowProduct} />
+            <Route
+              exact
+              path="/showproducts_item/:ID"
+              component={ShowProduct}
+            />
             <Route path="/cart" component={Cart} />
-            <Route path="/inventory" component={Inventory} />
-            <Route path="/" component={Products} />
+
+            <Route path="/products" component={Products} />
+
+            <Route path="/setup" component={SetupPage} />
           </Switch>
         </BaseLayout>
       </BrowserRouter>

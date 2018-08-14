@@ -22,9 +22,6 @@ import "./index.css";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
 import swal from "sweetalert";
-//import "./web.config";
-//import { Production_Keys } from './../../key_config.js';
-//import { Production_Keys } from './../public/key_config.js';
 import Production_Keys from "config";
 
 class Login extends Component {
@@ -34,10 +31,8 @@ class Login extends Component {
       username: "",
       password: "",
       logged: false
-  
     };
     this.login = this.login.bind(this);
-    
   }
 
   login() {
@@ -63,10 +58,12 @@ class Login extends Component {
         "X-Authorization":
           "Basic " +
           new Buffer(
+            //this is the format of Consumer Key and Secret
             // 'Consumer Key' + ' : ' + ' Consumer Secret'
             // "ynlrljIfzNq3fSowtP2FybQ_xqsa" +
             //   ":" +
             //   "5mcIE9EzLd7VZfajHmZTWjHUhgMa"
+
             Production_Keys
             // Encode using base64
           ).toString("base64")
@@ -82,7 +79,7 @@ class Login extends Component {
         axiosConfig
       ) //FRONTEND_URL
       .then(res => {
-       // console.log("RESPONSE RECEIVED: ", res.data);
+        // console.log("RESPONSE RECEIVED: ", res.data);
 
         var splitSentence = res.data.scope.split(" ");
         var stringArray = [];
@@ -90,20 +87,8 @@ class Login extends Component {
           stringArray.push(splitSentence[i]);
         }
 
-        //console.log("Split data:", stringArray);
-
         localStorage.setItem("scope", JSON.stringify(stringArray));
-
-        //Store access_token in localStorage
-
-        // var cookie_name = 'access_token';
-        // var cookie_value = 'res.data.access_token';
-        // create_cookie(cookie_name, cookie_value, 30, "/");
-
-
-
         localStorage.setItem("access_token", res.data.access_token);
-        //document.cookie = "access_token = res.data.access_token;30;/";
 
         //if user_name and passwors are correct go to the product page
         if (res.status === 200) {
@@ -121,7 +106,15 @@ class Login extends Component {
   }
   render() {
     if (this.state.logged) {
-      return <Redirect to="/" />;
+
+      
+
+
+      return <Redirect to="/products" />;
+
+
+
+
     }
     return (
       <div className="login_place">

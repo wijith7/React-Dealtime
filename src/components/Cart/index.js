@@ -48,7 +48,6 @@ export default class ProItems extends React.Component {
     // Get cart items from localstorage
     var items_array = JSON.parse(localStorage.getItem("item"));
 
-    
     //iterate items in localstorage
     for (var i = 0; i < items_array.length; i++) {
       // by this we send put request to order API in port 8243 for add Items for the store
@@ -75,7 +74,7 @@ export default class ProItems extends React.Component {
   //remove button function
   remove(ID) {
     var cart_items = JSON.parse(localStorage.getItem("item"));
-   
+
     // by this we remove the item that belong to ID
     var cartObj = [];
     for (var i = 0; i < cart_items.length; i++) {

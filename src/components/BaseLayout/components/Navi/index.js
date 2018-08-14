@@ -28,83 +28,43 @@ import { withRouter } from "react-router";
 import "./index.css";
 import Production_Keys from "config";
 import axios from "axios";
-//Navigation bar 
+
+//Navigation bar
 
 class Navi extends React.Component {
   constructor(e) {
     super(e);
     this.logout = this.logout.bind(this);
   }
-
+  
+//in here we call logout button functions and revoking token
   logout(event) {
+    var access_token = localStorage.getItem("access_token");
+    //store username and password in data variable
+    var data = "token=" + access_token;
 
+    let axiosConfig = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        "Access-Control-Allow-Origin": "*",
+        Accept: "*/*",
+        "X-Authorization":
+          "Basic " +
+          new Buffer(
+            Production_Keys
 
-    
-      
-      var access_token = localStorage.getItem("access_token");
-      //store username and password in data variable
-      var data =
-        "token=" + access_token;
-        
-  
-      let axiosConfig = {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-          "Access-Control-Allow-Origin": "*",
-          Accept: "*/*",
-          "X-Authorization":
-            "Basic " +
-            new Buffer(
-              // 'Consumer Key' + ' : ' + ' Consumer Secret'
-              // "ynlrljIfzNq3fSowtP2FybQ_xqsa" +
-              //   ":" +
-              //   "5mcIE9EzLd7VZfajHmZTWjHUhgMa"
-              Production_Keys
-              // Encode using base64
-            ).toString("base64")
-        }
-      };
-  
-      //this is requesting USER_NAME And PASSWORD from Token API
-  
-      axios
-        .post(
-          "https://localhost:8243/revoke/1.0.0/revoke",
-          data,
-          axiosConfig
-        ) //FRONTEND_URL
-        .then(res => {
-         // console.log("RESPONSE RECEIVED: ", res.data);
-  
-          
-          }
-  
-          
-          
-        );
-    
+            // Encode using base64
+          ).toString("base64")
+      }
+    };
 
+    //calling to revoke api
+    axios
+      .post("https://localhost:8243/revoke/1.0.0/revoke", data, axiosConfig) 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      .then(res => {
+        console.log("RESPONSE RECEIVED: ", res);
+      });
 
     localStorage.clear();
     this.props.changeLogged({ logged: false });
@@ -121,7 +81,7 @@ class Navi extends React.Component {
           <Toolbar variant="dense">
             <Typography variant="title" color="inherit">
               <span className="Home">
-                <Button href="/">HOME</Button>
+                <Button href="/products">HOME</Button>
               </span>
 
               {authorized ? (

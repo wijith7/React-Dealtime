@@ -1,0 +1,15 @@
+
+.Button{
+    
+    margin: 10px;
+    padding-right:6px;
+    
+}
+.frame{
+  
+  display: inline-block; 
+  margin: 10px; 
+  padding-left: 653px;
+  padding-top: 40px;
+  padding-bottom: 30px;
+}

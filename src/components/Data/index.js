@@ -26,10 +26,11 @@ export function getProducts() {
     .get("https://localhost:8243/itemapi/1.0.0/order/all", set_headder()) //FRONTEND_URL
 
     .then(function(res) {
-     // console.log("RESPONSE RECEIVED: ", res);
-     // console.log("RESPONSE data: ", res.data);
       let products = res.data;
+      console.log("aaa:",res);
+    
       return products;
+      console.log("aaa:",res);
     })
     .catch(err => {
       console.log("AXIOS ERROR: ", err);

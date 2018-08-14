@@ -18,6 +18,8 @@
 
 //Dependencies
 
+//this is for handdle inventory items
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { getProducts } from "../../Inventory_Data";
@@ -71,7 +73,7 @@ export default class ProItems extends React.Component {
               <div className="price-add">
                 <h5 id="product-price">${product.price}</h5>
 
-                <Link to={`/showproducts/${product.ID}`}>
+                <Link to={`/showproducts_item/${product.ID}`}>
                   <i class="material-icons icon-blue">ADD ITEM</i>
                 </Link>
               </div>

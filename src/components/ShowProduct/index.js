@@ -25,7 +25,7 @@ import "./index.css";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
 import { set_headder } from "../Request_Headder";
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
 import swal from "sweetalert";
 export default class ShowProduct extends React.Component {
   constructor() {
@@ -35,39 +35,36 @@ export default class ShowProduct extends React.Component {
       loading: false
     };
     this.handleChange = this.handleChange.bind(this);
-   
   }
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
   Add(ID, stock) {
-   
-    console.log("value",this.state.value );
+    console.log("value", this.state.value);
 
-      if(this.state.value === undefined){
-    swal({
-      text: "Please enter a valid number"
-    });
-    
-  }else{
-    window.location.reload();
-    // by this we send put request through the inventory_API for add Items for the store
-
-    return axios
-      .put(
-        "https://localhost:8243/inventoryapi/1.0.0/order/" + ID,
-        { stock: eval(this.state.value) + eval(stock) },
-        set_headder()
-      )
-      .then(function(res) {
-        console.log("RESPONSE RECEIVED: ", res);
-        console.log("RESPONSE data: ", res.data);
-        let products = res.data;
-        return products;
-      })
-      .catch(err => {
-        console.log("AXIOS ERROR: ", err);
+    if (this.state.value === undefined) {
+      swal({
+        text: "Please enter a valid number"
       });
+    } else {
+      window.location.reload();
+      // by this we send put request through the inventory_API for add Items for the store
+
+      return axios
+        .put(
+          "https://localhost:8243/inventoryapi/1.0.0/order/" + ID,
+          { stock: eval(this.state.value) + eval(stock) },
+          set_headder()
+        )
+        .then(function(res) {
+          console.log("RESPONSE RECEIVED: ", res);
+          console.log("RESPONSE data: ", res.data);
+          let products = res.data;
+          return products;
+        })
+        .catch(err => {
+          console.log("AXIOS ERROR: ", err);
+        });
     }
   }
   componentDidMount() {
@@ -80,7 +77,7 @@ export default class ShowProduct extends React.Component {
 
   render() {
     //get ID from the url add show the pertiquler product
-    
+
     var ID_Number = Number(this.props.match.params.ID);
 
     if (this.state.loading) {

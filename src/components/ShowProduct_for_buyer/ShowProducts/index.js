@@ -20,7 +20,7 @@
 //Dependencies
 import React from "react";
 import { getProducts } from "../../Data";
-import "./index1.css";
+import "./index.css";
 import swal from "sweetalert";
 
 export default class ShowProduct extends React.Component {
@@ -39,10 +39,9 @@ export default class ShowProduct extends React.Component {
 
   //this is use for pass product details to cart
   pass_cart(product) {
-   // var access_token = localStorage.getItem("access_token");
-   var access_token = document.cookie;
+    var access_token = localStorage.getItem("access_token");
 
-    if (access_token == null) {
+    if (access_token === null) {
       //alert("Please Login !!");
       swal({ title: "Please Login !!" });
       this.props.history.push("/login");
@@ -126,10 +125,10 @@ export default class ShowProduct extends React.Component {
                       <p id="product-description1">{product.description}</p>
                       <p id="product-price">${product.price}</p>
 
-                      <div >
+                      <div>
                         <button onClick={() => this.pass_cart(product)}>
                           <i className="medium material-icons icon-blue">
-                            <p id="product-description" >Add To Cart</p>
+                            <p id="product-description">Add To Cart</p>
                           </i>
                         </button>
                       </div>

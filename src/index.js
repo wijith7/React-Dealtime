@@ -30,7 +30,7 @@ import Login from "./components/Login";
 import ShowProduct from "./components/ShowProduct";
 import Inventory from "./components/Inventory";
 import InventoryItems from "./components/Inventory_Items";
-import show_products_B from "./components/ShowProduct_for_buyer/ShowProducts";
+import show_products_Buyer from "./components/ShowProduct_for_buyer/ShowProducts";
 import registerServiceWorker from "./registerServiceWorker";
 
 class ShoppingApp extends React.Component {
@@ -78,7 +78,7 @@ class ShoppingApp extends React.Component {
           authorized={authorized}
         >
           <Switch>
-            <Route path="/showproduct/:ID" component={show_products_B} />
+            <Route path="/showproduct/:ID" component={show_products_Buyer} />
             <Route
               path="/login"
               render={() => (
@@ -97,10 +97,12 @@ class ShoppingApp extends React.Component {
               component={ShowProduct}
             />
             <Route path="/cart" component={Cart} />
-
+           
             <Route path="/products" component={Products} />
 
-            <Route path="/setup" component={SetupPage} />
+             <Route path="/Setup" component={SetupPage} />
+
+           
           </Switch>
         </BaseLayout>
       </BrowserRouter>

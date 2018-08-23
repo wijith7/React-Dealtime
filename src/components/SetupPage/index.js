@@ -24,6 +24,7 @@ import swal from "sweetalert";
 import "./index.css";
 export default class ProItems extends React.Component {
   
+
   UserSetup(){
     axios
     .get("http://localhost:9090/importService/USERtrigger/true") //calling to ballerina service 
@@ -86,7 +87,7 @@ export default class ProItems extends React.Component {
             variant="contained"
             color="secondary"
           >
-            Set APIs
+            Deploy APIs
           </Button>
         </span>
 
@@ -96,7 +97,7 @@ export default class ProItems extends React.Component {
             variant="contained"
             color="secondary"
           >
-            Set Roles 
+            Create Roles 
           </Button>
         </span>
 
@@ -106,7 +107,7 @@ export default class ProItems extends React.Component {
             variant="contained"
             color="secondary"
           >
-            Set Users
+            Create Users
           </Button>
         </span>
       </div>

@@ -23,6 +23,7 @@ import axios from "axios";
 import Button from "@material-ui/core/Button";
 import swal from "sweetalert";
 import Production_Keys from "config";
+//import { Input } from 'react-bootstrap';
 
 class Login extends Component {
   constructor(props) {
@@ -33,9 +34,13 @@ class Login extends Component {
       logged: false
     };
     this.login = this.login.bind(this);
+   ;
   }
 
+
   login() {
+   
+    
     var userName = document.getElementById("userName").value;
     var password = document.getElementById("passWord").value;
 
@@ -103,20 +108,14 @@ class Login extends Component {
 
         swal("Username or Password Incorrect !");
       });
+    
   }
   render() {
     if (this.state.logged) {
-
-      
-
-
       return <Redirect to="/products" />;
-
-
-
-
     }
     return (
+      
       <div className="login_place">
         <div className="row" id="Body">
           <div className="medium-5 columns left">
@@ -140,20 +139,22 @@ class Login extends Component {
               name="password"
               placeholder="password"
             />
-
+         
             <Button
-              type="onSubmit"
+              type="text"
               className="button success"
               value="Login"
-              onClick={this.login}
+               onClick={this.login}
               variant="contained"
               color="primary"
             >
               LOGIN
             </Button>
+            
           </div>
         </div>
       </div>
+      
     );
   }
 }

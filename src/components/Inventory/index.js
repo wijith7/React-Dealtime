@@ -17,31 +17,36 @@
 */
 
 //Dependencies
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import './index.css';
-
-
+import React from "react";
+import { NavLink } from "react-router-dom";
+import "./index.css";
 
 export default class ShowProduct extends React.Component {
-
-
   render() {
-
     return (
       <div className="header">
         <h1 className="title">Inventory</h1>
-
         <div className="links-header">
-          <p><NavLink activeClassName="selected" className="nav-link-header" to="/add_inventory_items">Add Items</NavLink></p>
-          <p><NavLink activeClassName="selected" className="nav-link-header" to="/inventory_items">Inventory Items</NavLink></p>
-
+          <p>
+            <NavLink
+              activeClassName="selected"
+              className="nav-link-header"
+              to="/add_inventory_items"
+            >
+              Add Items
+            </NavLink>
+          </p>
+          <p>
+            <NavLink
+              activeClassName="selected"
+              className="nav-link-header"
+              to="/inventory_items"
+            >
+              Inventory Items
+            </NavLink>
+          </p>
         </div>
-
       </div>
-
     );
-
-
   }
 }

@@ -28,7 +28,7 @@ import Products from "./components/Products";
 import SetupPage from "./components/SetupPage";
 import Login from "./components/Login";
 import ShowProduct from "./components/ShowProduct";
-import Inventory from "./components/Inventory";
+//import Inventory from "./components/Inventory";
 import InventoryItems from "./components/Inventory_Items";
 import show_products_Buyer from "./components/ShowProduct_for_buyer/ShowProducts";
 import registerServiceWorker from "./registerServiceWorker";

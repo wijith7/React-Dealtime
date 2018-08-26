@@ -27,7 +27,7 @@ export default class ProItems extends React.Component {
 
   UserSetup(){
     axios
-    .get("http://localhost:9090/importService/USERtrigger/true") //calling to ballerina service 
+    .get("http://localhost:9090/importService/USERtrigger/true") //calling to USERtrigger ballerina service 
     .then(res => {
       console.log("ImportAPI RECEIVED: ", res);
 
@@ -45,7 +45,7 @@ export default class ProItems extends React.Component {
 
   RolesSetup() {
     axios
-      .get("http://localhost:9090/importService/ROLEStrigger/true") //calling to ballerina service 
+      .get("http://localhost:9090/importService/ROLEStrigger/true") //calling to ROLEStrigger ballerina service 
       .then(res => {
         console.log("ImportAPI RECEIVED: ", res);
 
@@ -63,7 +63,7 @@ export default class ProItems extends React.Component {
   //for set api button
   ApiSetup() {
     axios
-      .get("http://localhost:9090/importService/APItrigger/true") //calling to ballerina service 
+      .get("http://localhost:9090/importService/APItrigger/true") //calling to APItrigger ballerina service 
       .then(res => {
         console.log("ImportAPI RECEIVED: ", res);
 

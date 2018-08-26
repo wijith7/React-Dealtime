@@ -36,11 +36,13 @@ class Login extends Component {
     this.login = this.login.bind(this);
    ;
   }
-
+  handleSubmit = event => {
+   event.preventDefault()
+   this.login()
+ }
 
   login() {
-   
-    
+  
     var userName = document.getElementById("userName").value;
     var password = document.getElementById("passWord").value;
 
@@ -63,12 +65,6 @@ class Login extends Component {
         "X-Authorization":
           "Basic " +
           new Buffer(
-            //this is the format of Consumer Key and Secret
-            // 'Consumer Key' + ' : ' + ' Consumer Secret'
-            // "ynlrljIfzNq3fSowtP2FybQ_xqsa" +
-            //   ":" +
-            //   "5mcIE9EzLd7VZfajHmZTWjHUhgMa"
-
             Production_Keys
             // Encode using base64
           ).toString("base64")
@@ -121,6 +117,7 @@ class Login extends Component {
           <div className="medium-5 columns left">
             <h4>Login</h4>
 
+  <form onSubmit={this.handleSubmit}>
             <label> Username</label>
 
             <input
@@ -141,16 +138,17 @@ class Login extends Component {
             />
          
             <Button
-              type="text"
+              input type="submit"
               className="button success"
               value="Login"
-               onClick={this.login}
+              // onSubmit={this.login}
+               //onKeyPress={this.login}
               variant="contained"
               color="primary"
             >
               LOGIN
             </Button>
-            
+         </form>   
           </div>
         </div>
       </div>

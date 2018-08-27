@@ -30,7 +30,7 @@ import Login from "./components/Login";
 import ShowProduct from "./components/ShowProduct";
 //import Inventory from "./components/Inventory";
 import InventoryItems from "./components/Inventory_Items";
-import show_products_Buyer from "./components/ShowProduct_for_buyer/ShowProducts";
+import show_products_Buyer from "./components/ShowProduct_for_buyer/Show_Products";
 import registerServiceWorker from "./registerServiceWorker";
 
 class ShoppingApp extends React.Component {
@@ -78,7 +78,7 @@ class ShoppingApp extends React.Component {
           authorized={authorized}
         >
           <Switch>
-            <Route path="/showproduct/:ID" component={show_products_Buyer} />
+            <Route path="/show_product/:ID" component={show_products_Buyer} />
             <Route
               path="/login"
               render={() => (

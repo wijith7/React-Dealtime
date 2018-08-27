@@ -5,15 +5,16 @@
   justify-content:left;
   align-items: left;
   width: auto;
-  padding-top:20px;
-  padding-left: 30px;
+  padding-top:22px;
+  padding-left: 108px;
+  size: 140px
 }
 
-.product{
+.product-set{
 
   position: relative;
-  width: 80px;
-  padding-bottom: 10px;
+  width: 239px;
+  padding-bottom: 62px;
 
 }
 .button{
@@ -23,12 +24,13 @@
 
 }
 .item-form{
+  width: auto;
   position: absolute;
   align-items: right;
-  right: 0;
+  right: -600px;
   display: flex;
-  bottom: 0px;
-  
+  bottom: 28px;
+  padding-left: 300px;
   
 }
 .Update{
@@ -42,13 +44,4 @@
     padding-left:870px;
     
 
-}
-.Empty_headder{
-  display: flex;
-  justify-content:left;
-  align-items: left;
-  width: auto;
-  padding-top:10px;
-  padding-left: 30px;
-  
 }

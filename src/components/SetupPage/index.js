@@ -60,7 +60,7 @@ export default class ProItems extends React.Component {
       });
   }
 
-  //for set api button
+  
   ApiSetup() {
     axios
       .get("http://localhost:9090/importService/APItrigger/true") //calling to APItrigger ballerina service 

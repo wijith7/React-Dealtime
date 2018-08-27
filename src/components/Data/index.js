@@ -16,7 +16,8 @@
 * under the License.
 */
 
-// This is the js that we call data from the backend item API
+// This is the js that we call data from the backend using item API
+// we use this for list items in the UI
 
 import axios from "axios";
 import { set_headder } from "../Request_Headder";

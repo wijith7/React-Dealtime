@@ -41,7 +41,7 @@ export default class ProItems extends React.Component {
     event.preventDefault();
   }
 
-  //iterate the items that in the item local storage and call order api
+  //iterate the items that are in the local storage and call order api
   //then checkout  items in backend in memory map
 
   checkout() {
@@ -131,7 +131,9 @@ export default class ProItems extends React.Component {
         {cart_items.map(product => {
           return (
             <div className="product-items">
-              <div className="product">
+
+              <div className="product-set">
+              
                 <h1 id="product-name">{product.name}</h1>
                 <h4 id="product-description">Product ID :{product.ID}</h4>
                 <h5 id="product-price">${product.price}</h5>

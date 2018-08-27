@@ -56,7 +56,7 @@ export default class ProItems extends React.Component {
         {this.state.products.map(product => {
           return (
             <div key={product.ID} className="items">
-              <Link to={`/showproduct/${product.ID}`}>
+              <Link to={`/show_product/${product.ID}`}>
                 <div className="product-img">
                   <img alt={product.name} src={product.img} />
                 </div>

@@ -203,3 +203,8 @@ i:hover {
   color: grey;
 
 }
+.product {
+  position: relative;
+  width: 350px;
+  padding-bottom: 18px;
+}
